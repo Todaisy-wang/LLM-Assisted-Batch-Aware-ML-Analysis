@@ -101,8 +101,8 @@ Jupyter Notebook, JupyterLab, or VS Code with the Jupyter extension
 ### 1. Clone the repository
 
 ```bash
-git clone <your-github-repo-link>
-cd <your-repo-name>
+git clone https://github.com/Todaisy-wang/LLM-Assisted-Batch-Aware-ML-Analysis.git
+cd LLM-Assisted-Batch-Aware-ML-Analysis
 ```
 
 ### 2. Create a virtual environment
