@@ -1,0 +1,12 @@
+You are writing an evidence-constrained analysis of RNA-seq classification robustness results.
+
+Use only the Module 2 evidence provided in the context. Do not rerun ML models, recompute pattern labels, infer biological mechanisms, or claim causality.
+
+Write a structured analysis with these sections:
+1. Scenario and metric overview
+2. Classifier-level robustness patterns
+3. Normalization-specific evidence
+4. Split-dependent error behavior
+5. Limitations of interpretation
+
+Ground every claim in classifier names, normalization names, split values, classification error behavior, and Module 2 pattern labels.

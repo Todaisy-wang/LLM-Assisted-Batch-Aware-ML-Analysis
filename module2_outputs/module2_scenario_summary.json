@@ -1,0 +1,151 @@
+{
+  "scenario": "jama_scenario1_3",
+  "split_values": [
+    50,
+    70,
+    80,
+    90,
+    100
+  ],
+  "metric": "classification error",
+  "n_classifiers": 6,
+  "n_normalizations": 4,
+  "n_curves": 24,
+  "overall_pattern_counts": {
+    "trend_label": {
+      "increasing": 22,
+      "flat_or_weak": 2
+    },
+    "robustness_flag": {
+      "batch_sensitive": 16,
+      "moderately_sensitive": 8
+    },
+    "spike_type": {
+      "no_major_spike": 16,
+      "late_extreme_split_spike": 8
+    },
+    "curve_shape": {
+      "non_monotonic_increase": 8,
+      "monotonic_with_spike": 7,
+      "gradual_monotonic_increase": 7,
+      "mostly_flat": 2
+    },
+    "pattern_strength": {
+      "moderate": 13,
+      "weak": 8,
+      "strong": 3
+    },
+    "degradation_type": {
+      "fluctuating": 9,
+      "late_spike_driven": 8,
+      "gradual_degradation": 7
+    }
+  },
+  "most_sensitive_combinations": [
+    {
+      "classifier": "knn",
+      "normalization": "vsn",
+      "delta_100_50": 0.30602099225952395,
+      "error_50": 0.114774114774115,
+      "error_100": 0.420795107033639,
+      "robustness_flag": "batch_sensitive",
+      "degradation_type": "late_spike_driven",
+      "pattern_strength": "strong"
+    },
+    {
+      "classifier": "knn",
+      "normalization": "mn",
+      "delta_100_50": 0.2711709289690939,
+      "error_50": 0.1214896214896214,
+      "error_100": 0.3926605504587153,
+      "robustness_flag": "batch_sensitive",
+      "degradation_type": "late_spike_driven",
+      "pattern_strength": "strong"
+    },
+    {
+      "classifier": "knn",
+      "normalization": "qn",
+      "delta_100_50": 0.2699409662712411,
+      "error_50": 0.1178266178266179,
+      "error_100": 0.387767584097859,
+      "robustness_flag": "batch_sensitive",
+      "degradation_type": "late_spike_driven",
+      "pattern_strength": "strong"
+    },
+    {
+      "classifier": "xgb",
+      "normalization": "qn",
+      "delta_100_50": 0.1665703307905143,
+      "error_50": 0.114163614163614,
+      "error_100": 0.2807339449541283,
+      "robustness_flag": "batch_sensitive",
+      "degradation_type": "late_spike_driven",
+      "pattern_strength": "moderate"
+    },
+    {
+      "classifier": "lasso",
+      "normalization": "vsn",
+      "delta_100_50": 0.166569210605908,
+      "error_50": 0.1135531135531136,
+      "error_100": 0.2801223241590216,
+      "robustness_flag": "batch_sensitive",
+      "degradation_type": "gradual_degradation",
+      "pattern_strength": "moderate"
+    }
+  ],
+  "most_stable_combinations": [
+    {
+      "classifier": "svm",
+      "normalization": "non",
+      "delta_100_50": 0.03332325167187561,
+      "error_50": 0.161172161172161,
+      "error_100": 0.1944954128440366,
+      "robustness_flag": "moderately_sensitive",
+      "degradation_type": "fluctuating",
+      "pattern_strength": "weak"
+    },
+    {
+      "classifier": "pam",
+      "normalization": "qn",
+      "delta_100_50": 0.0504856000268846,
+      "error_50": 0.181318681318681,
+      "error_100": 0.2318042813455656,
+      "robustness_flag": "moderately_sensitive",
+      "degradation_type": "fluctuating",
+      "pattern_strength": "weak"
+    },
+    {
+      "classifier": "rf",
+      "normalization": "non",
+      "delta_100_50": 0.058962036943687984,
+      "error_50": 0.1343101343101346,
+      "error_100": 0.1932721712538226,
+      "robustness_flag": "moderately_sensitive",
+      "degradation_type": "fluctuating",
+      "pattern_strength": "weak"
+    },
+    {
+      "classifier": "knn",
+      "normalization": "non",
+      "delta_100_50": 0.07363421491861871,
+      "error_50": 0.1306471306471306,
+      "error_100": 0.2042813455657493,
+      "robustness_flag": "moderately_sensitive",
+      "degradation_type": "gradual_degradation",
+      "pattern_strength": "weak"
+    },
+    {
+      "classifier": "xgb",
+      "normalization": "non",
+      "delta_100_50": 0.07849469592588851,
+      "error_50": 0.1129426129426131,
+      "error_100": 0.1914373088685016,
+      "robustness_flag": "moderately_sensitive",
+      "degradation_type": "gradual_degradation",
+      "pattern_strength": "weak"
+    }
+  ],
+  "dominant_observation": "Most classifier-normalization curves show increasing error as split moves from 50 to 100, suggesting reduced robustness under stronger batch-separated evaluation.",
+  "dominant_failure_mode": "The most frequent degradation type is fluctuating.",
+  "analysis_scope_note": "This summary describes performance patterns only and does not infer biological mechanisms."
+}

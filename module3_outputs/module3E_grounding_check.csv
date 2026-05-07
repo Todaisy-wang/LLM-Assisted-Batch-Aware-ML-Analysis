@@ -1,0 +1,10 @@
+check_name,status,details,severity
+required_sections,pass,All required sections are present.,info
+forbidden_claims,pass,"[{""term"": ""biomarker"", ""sentence"": ""No external datasets, genes, or biomarkers were introduced"", ""severity"": ""info""}, {""term"": ""biological mechanism"", ""sentence"": ""No biological mechanisms were inferred from the data"", ""severity"": ""info""}]",info
+exact_keyword_coverage,warning,"rate=0.667; missing=['batch_sensitive', 'moderately_sensitive', 'late_spike_driven', 'gradual_degradation']",warning
+relaxed_keyword_coverage,pass,"rate=0.833; missing=['moderately_sensitive', 'gradual_degradation']",info
+classifier_coverage,warning,"rate=0.500; missing=['lasso', 'rf', 'xgb']",warning
+normalization_coverage,pass,rate=0.750; missing=['mn'],info
+top_sensitive_pair_coverage,pass,"{""covered"": [{""classifier"": ""knn"", ""normalization"": ""vsn"", ""match_type"": ""partial""}, {""classifier"": ""knn"", ""normalization"": ""mn"", ""match_type"": ""partial""}, {""classifier"": ""knn"", ""normalization"": ""qn"", ""match_type"": ""partial""}], ""missing"": [], ""coverage_count"": 3, ""coverage_rate"": 1.0}",info
+top_stable_pair_coverage,pass,"{""covered"": [{""classifier"": ""svm"", ""normalization"": ""non"", ""match_type"": ""partial""}, {""classifier"": ""pam"", ""normalization"": ""qn"", ""match_type"": ""partial""}, {""classifier"": ""rf"", ""normalization"": ""non"", ""match_type"": ""exact""}], ""missing"": [], ""coverage_count"": 3, ""coverage_rate"": 1.0}",info
+section_length_sanity,pass,All checked text sections have reasonable length.,info

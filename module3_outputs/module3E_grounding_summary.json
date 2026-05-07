@@ -1,0 +1,66 @@
+{
+  "analysis_source": "api_llm_output",
+  "evaluated_file": "module3_outputs\\module3D_llm_analysis.json",
+  "required_sections_passed": true,
+  "forbidden_terms_found": [
+    {
+      "term": "biomarker",
+      "sentence": "No external datasets, genes, or biomarkers were introduced",
+      "severity": "info"
+    },
+    {
+      "term": "biological mechanism",
+      "sentence": "No biological mechanisms were inferred from the data",
+      "severity": "info"
+    }
+  ],
+  "exact_keyword_coverage_rate": 0.6666666666666666,
+  "relaxed_keyword_coverage_rate": 0.8333333333333334,
+  "classifier_coverage_rate": 0.5,
+  "normalization_coverage_rate": 0.75,
+  "top_sensitive_pair_coverage": {
+    "covered": [
+      {
+        "classifier": "knn",
+        "normalization": "vsn",
+        "match_type": "partial"
+      },
+      {
+        "classifier": "knn",
+        "normalization": "mn",
+        "match_type": "partial"
+      },
+      {
+        "classifier": "knn",
+        "normalization": "qn",
+        "match_type": "partial"
+      }
+    ],
+    "missing": [],
+    "coverage_count": 3,
+    "coverage_rate": 1.0
+  },
+  "top_stable_pair_coverage": {
+    "covered": [
+      {
+        "classifier": "svm",
+        "normalization": "non",
+        "match_type": "partial"
+      },
+      {
+        "classifier": "pam",
+        "normalization": "qn",
+        "match_type": "partial"
+      },
+      {
+        "classifier": "rf",
+        "normalization": "non",
+        "match_type": "exact"
+      }
+    ],
+    "missing": [],
+    "coverage_count": 3,
+    "coverage_rate": 1.0
+  },
+  "overall_grounding_status": "pass_with_warnings"
+}

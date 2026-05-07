@@ -1,0 +1,45 @@
+module,test_name,status,details
+Module 1,required files exist,PASS,all required files exist
+Module 1,required files are non-empty,PASS,all required files are non-empty
+Module 1,tidy results load and are non-empty,PASS,rows=360
+Module 1,performance summary loads and is non-empty,PASS,rows=120
+Module 1,tidy results required columns,PASS,"required columns present; columns=['scenario', 'classifier', 'batch_balance', 'normalization', 'repeat_id', 'split', 'error']"
+Module 1,expected split values present,PASS,"expected splits present=[50, 70, 80, 90, 100]"
+Module 1,expected normalizations present,PASS,"expected normalizations present=['mn', 'non', 'qn', 'vsn']"
+Module 1,metadata JSON readable,PASS,"metadata keys=['number_of_files', 'scenarios', 'classifiers', 'normalizations', 'split_values', 'batch_balance_values', 'total_tidy_rows', 'total_summary_rows']"
+Module 2,required files exist,PASS,all required files exist
+Module 2,required files are non-empty,PASS,all required files are non-empty
+Module 2,pattern table loads and is non-empty,PASS,rows=24
+Module 2,split error columns present,PASS,"split error columns present=['error_50', 'error_70', 'error_80', 'error_90', 'error_100']"
+Module 2,required pattern columns present,PASS,"pattern columns present=['trend_label', 'robustness_flag', 'degradation_type', 'pattern_sentence']"
+Module 2,robustness labels allowed,PASS,"observed robustness labels=['batch_sensitive', 'moderately_sensitive']"
+Module 2,LLM-ready JSON loads,PASS,type=dict
+Module 2,scenario summary JSON loads,PASS,"keys=['scenario', 'split_values', 'metric', 'n_classifiers', 'n_normalizations', 'n_curves', 'overall_pattern_counts', 'most_sensitive_combinations', 'most_stable_combinations', 'dominant_observation', 'dominant_failure_mode', 'analysis_scope_note']"
+Module 2,figures directory has PNG output,PASS,png_count=9
+Module 3,required files exist,PASS,all required files exist
+Module 3,required files are non-empty,PASS,all required files are non-empty
+Module 3,evidence pack JSON loads,PASS,"keys=['project_scope', 'scenario_overview', 'most_sensitive_combinations', 'most_stable_combinations', 'classifier_level_evidence', 'normalization_level_evidence', 'representative_pattern_sentences']"
+Module 3,LLM analysis JSON loads,PASS,"keys=['observation', 'pattern_interpretation', 'classifier_comparison', 'normalization_comparison', 'research_implication', 'limitations', 'evidence_usage_notes']"
+Module 3,grounding summary JSON loads,PASS,"keys=['analysis_source', 'evaluated_file', 'required_sections_passed', 'forbidden_terms_found', 'exact_keyword_coverage_rate', 'relaxed_keyword_coverage_rate', 'classifier_coverage_rate', 'normalization_coverage_rate', 'top_sensitive_pair_coverage', 'top_stable_pair_coverage', 'overall_grounding_status']"
+Module 3,LLM analysis required sections,PASS,required LLM sections found
+Module 3,grounding status allowed,PASS,grounding_status=pass_with_warnings
+Module 3,final report summary markdown valid,PASS,characters=3579
+Module 4,demo responses JSON exists,PASS,selected=module4_outputs\module4_chatbot_responses.json
+Module 4,quality log CSV exists,PASS,selected=module4_outputs\module4_answer_quality_log.csv
+Module 4,quality summary JSON exists,PASS,selected=module4_outputs\module4_answer_quality_summary.json
+Module 4,transcript markdown exists,PASS,selected=module4_outputs\module4_demo_transcript.md
+Module 4,selected demo responses JSON loads,PASS,records=10
+Module 4,selected quality summary JSON loads,PASS,"keys=['n_answers', 'n_pass', 'n_pass_with_warnings', 'n_fail', 'pass_rate', 'pass_or_warning_rate', 'warnings_by_type', 'failed_query_ids', 'warning_query_ids', 'overall_module4_quality_status', 'generation_mode', 'evaluated_files']"
+Module 4,selected quality log loads and is non-empty,PASS,rows=10
+Module 4,response records contain question and answer fields,PASS,records with flexible question+answer fields=10/10
+Module 4,responses contain evidence/grounding terms,PASS,"present terms=['evidence', 'grounding', 'pattern', 'classifier', 'normalization']"
+Module 4,transcript markdown content valid,PASS,characters=13288
+Module 4,optional final validation checklist indicates pass,PASS,No separate final validation file found; validation covered by this notebook.
+Integration,all module output directories exist,PASS,all module output directories exist
+Integration,Module 1 to Module 2 dependency exists,PASS,module1 performance summary and module2 pattern table exist
+Integration,Module 2 to Module 3 dependency exists,PASS,module2 LLM-ready JSON and module3 evidence pack exist
+Integration,Module 3 to Module 4 dependency exists,PASS,module3 analysis/grounding and module4 demo responses exist
+Integration,at least one artifact in each output directory,PASS,"file counts by directory={'module1_outputs': 3, 'module2_outputs': 8, 'module3_outputs': 20, 'module4_outputs': 11}"
+Integration,core files are non-empty,PASS,core files checked=6
+Integration,API independence check,PASS,official non-API Module 4 demo artifacts exist; API-only artifacts are not required
+Integration,artifacts readable without rerunning notebooks,PASS,"readable artifacts: json=7, csv=5"

@@ -1,0 +1,51 @@
+{
+  "input_file": "module2_outputs\\module2_llm_ready_patterns.json",
+  "validation_time": "2026-05-05T18:49:02.482396+00:00",
+  "overall_status": "pass",
+  "can_continue_to_module3B": true,
+  "checks": {
+    "file_existence": {
+      "status": "pass",
+      "detail": "Resolved input file exists and is non-empty."
+    },
+    "json_parse": {
+      "status": "pass",
+      "detail": "Input file loaded as JSON."
+    },
+    "top_level_structure": {
+      "status": "pass",
+      "detail": "Top-level object and required keys are present."
+    },
+    "experiment_context": {
+      "status": "pass",
+      "detail": "Experiment context matches expected Module 3A contract."
+    },
+    "detected_patterns": {
+      "status": "pass",
+      "detail": "Check passed."
+    },
+    "error_curves": {
+      "status": "pass",
+      "detail": "Check passed."
+    },
+    "label_validity": {
+      "status": "pass",
+      "detail": "Check passed."
+    },
+    "combination_uniqueness_and_coverage": {
+      "status": "pass",
+      "detail": "Check passed."
+    },
+    "derived_feature_consistency": {
+      "status": "pass",
+      "detail": "Check passed."
+    },
+    "text_evidence": {
+      "status": "pass",
+      "detail": "Check passed."
+    }
+  },
+  "critical_issues": [],
+  "warnings": [],
+  "recommended_next_action": "Continue to Module 3B Evidence Pack Builder."
+}

@@ -1,0 +1,15 @@
+{
+  "execution_mode": "API",
+  "model_name": "gpt-4o-mini",
+  "temperature": 0.2,
+  "input_prompt_file": "module3_outputs\\module3C_filled_prompt.txt",
+  "output_file": "module3_outputs\\module3D_llm_analysis.json",
+  "schema_validation_status": {
+    "passed": true,
+    "missing_keys": [],
+    "extra_keys": [],
+    "evidence_usage_notes_is_list": true
+  },
+  "timestamp": "2026-05-05T18:56:15.077085+00:00",
+  "openai_api_key_available": true
+}

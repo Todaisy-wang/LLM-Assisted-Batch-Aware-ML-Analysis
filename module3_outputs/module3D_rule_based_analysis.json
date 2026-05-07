@@ -1,0 +1,14 @@
+{
+  "analysis_source": "rule_based_fallback",
+  "observation": "Within this experiment, Most classifier-normalization curves show increasing error as split moves from 50 to 100, suggesting reduced robustness under stronger batch-separated evaluation. The evidence pack summarizes 24 classifier-normalization curves.",
+  "pattern_interpretation": "The observed pattern suggests that the largest degradation is knn/vsn with delta_100_50=0.306, robustness_flag=batch_sensitive, and degradation_type=late_spike_driven. The most stable listed combination is svm/non with delta_100_50=0.033.",
+  "classifier_comparison": "Based on mean_delta_100_50, the classifiers with larger observed shifts are knn, rf, xgb; classifiers with smaller observed shifts include svm, lasso, pam.",
+  "normalization_comparison": "Across normalization summaries, larger mean_delta_100_50 values are observed for vsn, mn, while smaller mean_delta_100_50 values are observed for qn, non.",
+  "research_implication": "Within this experiment, the observed pattern suggests that cross-batch robustness analysis should compare classifier and normalization choices across split values rather than relying on a single split setting.",
+  "limitations": "This rule-based fallback uses only the compact evidence pack and does not add external information. It should be treated as a deterministic draft, not as an LLM-generated interpretation.",
+  "evidence_usage_notes": [
+    "Used scenario_overview, most_sensitive_combinations, most_stable_combinations, classifier_level_evidence, and normalization_level_evidence.",
+    "Used only classification-error pattern evidence provided by Module 3B.",
+    "Did not add external datasets or unsupported domain claims."
+  ]
+}

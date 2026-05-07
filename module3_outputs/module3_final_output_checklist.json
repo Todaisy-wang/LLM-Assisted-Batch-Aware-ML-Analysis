@@ -1,0 +1,101 @@
+{
+  "expected_outputs": {
+    "module3A_input_validation_report.json": {
+      "file_path": "module3_outputs\\module3A_input_validation_report.json",
+      "exists": true,
+      "file_size_bytes": 1408
+    },
+    "module3A_input_validation_summary.md": {
+      "file_path": "module3_outputs\\module3A_input_validation_summary.md",
+      "exists": true,
+      "file_size_bytes": 351
+    },
+    "module3B_evidence_pack.json": {
+      "file_path": "module3_outputs\\module3B_evidence_pack.json",
+      "exists": true,
+      "file_size_bytes": 18479
+    },
+    "module3B_evidence_pack.md": {
+      "file_path": "module3_outputs\\module3B_evidence_pack.md",
+      "exists": true,
+      "file_size_bytes": 7841
+    },
+    "module3C_prompt_template.txt": {
+      "file_path": "module3_outputs\\module3C_prompt_template.txt",
+      "exists": true,
+      "file_size_bytes": 1580
+    },
+    "module3C_filled_prompt.txt": {
+      "file_path": "module3_outputs\\module3C_filled_prompt.txt",
+      "exists": true,
+      "file_size_bytes": 20039
+    },
+    "module3D_llm_analysis.json": {
+      "file_path": "module3_outputs\\module3D_llm_analysis.json",
+      "exists": true,
+      "file_size_bytes": 2024
+    },
+    "module3D_llm_analysis.md": {
+      "file_path": "module3_outputs\\module3D_llm_analysis.md",
+      "exists": true,
+      "file_size_bytes": 2013
+    },
+    "module3D_llm_run_metadata.json": {
+      "file_path": "module3_outputs\\module3D_llm_run_metadata.json",
+      "exists": true,
+      "file_size_bytes": 461
+    },
+    "module3E_grounding_check.csv": {
+      "file_path": "module3_outputs\\module3E_grounding_check.csv",
+      "exists": true,
+      "file_size_bytes": 1613
+    },
+    "module3E_grounding_summary.json": {
+      "file_path": "module3_outputs\\module3E_grounding_summary.json",
+      "exists": true,
+      "file_size_bytes": 1686
+    },
+    "module3E_grounding_summary.md": {
+      "file_path": "module3_outputs\\module3E_grounding_summary.md",
+      "exists": true,
+      "file_size_bytes": 2005
+    },
+    "module3_final_report_summary.md": {
+      "file_path": "module3_outputs\\module3_final_report_summary.md",
+      "exists": true,
+      "file_size_bytes": 3616
+    },
+    "module3_final_output_checklist.json": {
+      "file_path": "module3_outputs\\module3_final_output_checklist.json",
+      "exists": true,
+      "file_size_bytes": 3494
+    }
+  },
+  "optional_outputs": {
+    "module3D_llm_analysis_NOT_RUN.md": {
+      "file_path": "module3_outputs\\module3D_llm_analysis_NOT_RUN.md",
+      "exists": true,
+      "file_size_bytes": 88
+    },
+    "module3D_rule_based_analysis.json": {
+      "file_path": "module3_outputs\\module3D_rule_based_analysis.json",
+      "exists": true,
+      "file_size_bytes": 1745
+    },
+    "module3D_rule_based_analysis.md": {
+      "file_path": "module3_outputs\\module3D_rule_based_analysis.md",
+      "exists": true,
+      "file_size_bytes": 1749
+    }
+  },
+  "missing_required_outputs": [],
+  "all_required_outputs_present": true,
+  "module3_status_summary": {
+    "module3A_overall_status": "pass",
+    "module3D_execution_mode": "API",
+    "module3D_schema_validation_passed": true,
+    "module3E_grounding_status": "pass_with_warnings",
+    "module3E_analysis_source": "api_llm_output"
+  },
+  "recommended_next_action": "Use the final report summary and grounding warnings to refine the next analysis prompt if needed."
+}

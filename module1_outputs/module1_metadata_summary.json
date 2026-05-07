@@ -1,0 +1,32 @@
+{
+  "number_of_files": 6,
+  "scenarios": [
+    "jama_scenario1_3"
+  ],
+  "classifiers": [
+    "knn",
+    "lasso",
+    "pam",
+    "rf",
+    "svm",
+    "xgb"
+  ],
+  "normalizations": [
+    "non",
+    "qn",
+    "mn",
+    "vsn"
+  ],
+  "split_values": [
+    50,
+    70,
+    80,
+    90,
+    100
+  ],
+  "batch_balance_values": [
+    true
+  ],
+  "total_tidy_rows": 360,
+  "total_summary_rows": 120
+}
