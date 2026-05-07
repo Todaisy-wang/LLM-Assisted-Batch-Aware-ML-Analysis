@@ -16,7 +16,8 @@ The project is designed to answer two main questions:
 
 The following framework summarizes the full design of the project, from RNA-seq data preparation and batch modeling to robustness evaluation, failure evidence extraction, LLM-assisted analysis, and LLM output evaluation.
 
-![Method Design Framework](figures/method_design_framework.png)
+<img width="1149" height="1369" alt="8813" src="https://github.com/user-attachments/assets/755f247c-73c3-4156-b998-e53a9d9da34d" />
+
 
 The framework contains eight layers:
 
