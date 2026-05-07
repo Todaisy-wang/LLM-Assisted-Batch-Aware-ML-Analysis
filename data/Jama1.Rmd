@@ -1,0 +1,308 @@
+---
+title: "Jama1"
+author: "ZHITONG GUO"
+date: "2026-04-06"
+output: html_document
+---
+
+```{r setup, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(data.table)
+library(dplyr)
+library(ggplot2)
+library(readxl)
+library(uwot)
+
+set.seed(1)
+options(stringsAsFactors = FALSE)
+```
+
+```{r read_data}
+data_all <- fread(
+  "expression_matrix.csv",
+  sep = "\t",
+  data.table = FALSE,
+  check.names = FALSE
+)
+
+if (file.exists("expressed_mirnas.txt")) {
+  data_name_filter <- fread(
+    "expressed_mirnas.txt",
+    header = FALSE,
+    data.table = FALSE
+  )
+  data_filter <- data_all[which(data_all$miRNA %in% data_name_filter[, 1]), ]
+} else {
+  data_filter <- data_all
+}
+
+clinical_jama <- read_excel("eTable1.xlsx")
+```
+
+```{r align_samples}
+## rename eTable1 columns to simple names
+colnames(clinical_jama) <- c(
+  "sample_number", "age", "gender", "smoking_history",
+  "pack_years", "disease", "group", "stage"
+)
+
+## expression matrix: first col = miRNA, remaining cols = samples
+feature_id <- data_filter[[1]]
+expr_df <- data_filter[, -1, drop = FALSE]
+
+## force numeric conversion column by column
+expr_df[] <- lapply(expr_df, function(x) suppressWarnings(as.numeric(x)))
+
+expr_mat <- as.matrix(expr_df)
+rownames(expr_mat) <- feature_id
+storage.mode(expr_mat) <- "numeric"
+
+## remove bad rows first
+keep_feature <- apply(expr_mat, 1, function(v) all(is.finite(v)))
+expr_mat <- expr_mat[keep_feature, , drop = FALSE]
+
+## log exactly as in jama_scenario_pretest.Rmd
+expr_mat <- log2(expr_mat + 1)
+
+expr_colnames <- colnames(data_filter)[-1]
+
+## build within-group labels exactly as jama_scenario_pretest.Rmd
+meta <- clinical_jama %>%
+  mutate(
+    group = as.character(group),
+    stage = suppressWarnings(as.numeric(stage))
+  ) %>%
+  group_by(group) %>%
+  mutate(within_group_id = row_number()) %>%
+  ungroup() %>%
+  mutate(
+    expr_label = case_when(
+      group == "HC"   ~ paste0("Healthy control ", within_group_id),
+      group == "NTLD" ~ paste0("NTLD ", within_group_id),
+      group == "LCa"  ~ paste0("LCa ", within_group_id),
+      group == "OD"   ~ paste0("OD ", within_group_id),
+      TRUE ~ NA_character_
+    )
+  )
+
+meta_aligned <- meta[match(expr_colnames, meta$expr_label), ]
+
+stopifnot(ncol(expr_mat) == nrow(meta_aligned))
+stopifnot(all(expr_colnames == meta_aligned$expr_label))
+stopifnot(!any(is.na(meta_aligned$sample_number)))
+
+cat("Aligned sample count:", ncol(expr_mat), "\n")
+print(table(meta_aligned$group))
+
+```
+
+```{r build_scenarios}
+build_scenario_data <- function(expr_mat, meta_aligned,
+                                scenario = c("scenario1", "scenario2", "scenario3")) {
+  scenario <- match.arg(scenario)
+
+  if (scenario == "scenario1") {
+    keep <- meta_aligned$group %in% c("LCa", "NTLD", "OD", "HC")
+    y <- ifelse(meta_aligned$group[keep] == "LCa", "LCa", "non_LCa")
+  }
+
+  if (scenario == "scenario2") {
+    keep <- meta_aligned$group %in% c("LCa", "NTLD")
+    y <- ifelse(meta_aligned$group[keep] == "LCa", "LCa", "NTLD")
+  }
+
+  if (scenario == "scenario3") {
+    keep <- (meta_aligned$group == "LCa" & meta_aligned$stage %in% c(1, 2)) |
+            (meta_aligned$group %in% c("NTLD", "OD", "HC"))
+    y <- ifelse(meta_aligned$group[keep] == "LCa" & meta_aligned$stage[keep] %in% c(1, 2),
+                "early_LCa", "non_lung_cancer")
+  }
+
+  list(
+    x = expr_mat[, keep, drop = FALSE],
+    meta = meta_aligned[keep, , drop = FALSE],
+    y = factor(y)
+  )
+}
+
+## change only here when you want another scenario
+scenario_name <- "scenario1"
+sc <- build_scenario_data(expr_mat, meta_aligned, scenario_name)
+
+print(table(sc$y))
+print(table(sc$meta$group, useNA = "ifany"))
+
+```
+
+```{r feature_filtering}
+# Figure 1.1
+data1 <- as.data.frame(sc$x)
+rownames(data1) <- rownames(sc$x)
+
+means <- apply(data1, 1, mean, na.rm = TRUE)
+names(means) <- rownames(data1)
+sds <- apply(data1, 1, sd, na.rm = TRUE)
+names(sds) <- rownames(data1)
+
+poordata <- data1[which(means < 6.2 & means > 3.5), , drop = FALSE]
+positive_data <- data1[which(means > 6.5), , drop = FALSE]
+
+poordata <- poordata[rowSums(is.na(poordata)) == 0, , drop = FALSE]
+positive_data <- positive_data[rowSums(is.na(positive_data)) == 0, , drop = FALSE]
+
+hist(means, breaks = 200)
+abline(v = 3.5, col = "blue")
+abline(v = 6.2, col = "blue")
+abline(v = 6.5, col = "red")
+
+plot(x = means, y = sds)
+abline(v = 3.5, col = "blue")
+abline(v = 6.2, col = "blue")
+abline(v = 6.5, col = "red")
+
+print(dim(poordata))
+print(dim(positive_data))
+print(sum(is.na(poordata)))
+print(sum(is.na(positive_data)))
+
+```
+
+```{r umap_and_batch}
+# Figure 1.2
+set.seed(1)
+
+uhdata_averaged.umap <- uwot::umap(t(poordata), n_components = 4)
+layout <- as.data.frame(uhdata_averaged.umap)
+colnames(layout)[1:4] <- c("X1", "X2", "X3", "X4")
+
+layout_df <- layout %>%
+  mutate(
+    UMAP1 = -X1,
+    UMAP2 = -X2,
+    class_label = sc$y,
+    group = sc$meta$group,
+    sample_number = sc$meta$sample_number,
+    expr_label = sc$meta$expr_label
+  )
+
+layout_df %>%
+  ggplot(aes(x = UMAP1, y = UMAP2, color = class_label)) +
+  geom_point() +
+  theme(plot.title = element_text(hjust = 0.5, size = 16),
+        axis.title = element_text(size = 12)) +
+  labs(title = paste0("UMAP - ", scenario_name),
+       y = "UMAP2", x = "UMAP1")
+
+## keep the original simple UMAP-cutting idea, only minimal change
+#layout_df <- layout_df %>%
+  #mutate(batch = ifelse(UMAP1 < 0.4, 1, 2))
+layout_df <- layout_df %>%
+  mutate(batch = ifelse(UMAP2 < 2.5, 1, 2))
+
+batch_id <- layout_df$batch
+
+print(table(batch_id))
+print(table(layout_df$class_label, batch_id))
+print(table(layout_df$group, batch_id))
+
+```
+
+```{r plot_batch}
+p_batch_new <- layout_df %>%
+  mutate(batch = factor(batch, levels = c(1, 2))) %>%
+  ggplot(aes(x = UMAP1, y = UMAP2, color = batch)) +
+  geom_point(size = 1.6, alpha = 0.9) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5, size = 16),
+        axis.title = element_text(size = 12),
+        legend.title = element_text(size = 12),
+        legend.text = element_text(size = 11)) +
+  labs(title = paste0("UMAP with 2 inferred batches - ", scenario_name),
+       x = "UMAP1",
+       y = "UMAP2",
+       color = "Batch") +
+  #geom_vline(xintercept = 0.4, linetype = 2)
+  geom_hline(yintercept = 2.5, linetype = 2)
+
+p_batch_new
+
+```
+
+```{r}
+tab_batch_class <- table(batch_id, layout_df$class_label)
+print(tab_batch_class)
+
+prop.table(tab_batch_class, margin = 1)
+
+prop.table(tab_batch_class, margin = 2)
+```
+
+```{r}
+stopifnot(nrow(sc$meta) == ncol(positive_data))
+stopifnot(length(batch_id) == ncol(positive_data))
+stopifnot(all(colnames(positive_data) == sc$meta$expr_label))
+
+## 1) data: force matrix
+positive_mat <- as.matrix(positive_data)
+storage.mode(positive_mat) <- "numeric"
+
+## 2) class: use scenario-defined y, not old LCa-vs-all hardcode
+class_vec <- sc$y
+class_vec <- droplevels(class_vec)
+
+## 3) batch: atomic vector
+batch_vec <- as.numeric(batch_id)
+
+## 4) final alignment checks
+stopifnot(ncol(positive_mat) == length(class_vec))
+stopifnot(ncol(positive_mat) == length(batch_vec))
+stopifnot(all(colnames(positive_mat) == sc$meta$expr_label))
+
+str(positive_mat)
+str(class_vec)
+str(batch_vec)
+
+print(table(class_vec, useNA = "ifany"))
+print(table(batch_vec, useNA = "ifany"))
+print(table(class_vec, batch_vec, useNA = "ifany"))
+```
+
+```{r}
+start_time <- Sys.time()
+
+times <- 3
+ml_sum(
+  n = times,
+  data = positive_mat,
+  class = class_vec,
+  batch = batch_vec,
+  batch_time = FALSE,
+  early_batch_id = 2,
+  batch_balance = TRUE,
+  ml = c("knn", "lasso", "svm", "pam", "xgb","rf"),
+  split_combination = c(50,70,80,90,100),
+  data_type_rnaseq = FALSE,
+  file = paste0("jama_", scenario_name)
+)
+
+end_time <- Sys.time()
+run_time <- end_time - start_time
+print(run_time)
+```
+
+```{r}
+times <- 3
+
+p <- result_plot(
+  n = times,
+  ml = c("knn", "lasso", "svm", "pam", "xgb","rf"),
+  file = paste0("jama_", scenario_name),
+  batch_balance = TRUE,
+  data_type_rnaseq = FALSE,
+  split_combination = c(50,70,80,90,100)
+)
+
+ggsave(paste0("Jama_", scenario_name, ".png"), p, width = 8, height = 6)
+
+```
