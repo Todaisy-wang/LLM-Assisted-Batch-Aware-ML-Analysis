@@ -1,0 +1,37 @@
+{
+  "notebook_name": "module4C_api_interactive_demo_chatbot.ipynb",
+  "purpose": "API-enabled interactive presentation chatbot using saved structured evidence with deterministic template fallback.",
+  "api_mode_default": true,
+  "openai_model": "gpt-4o-mini",
+  "api_key_available": false,
+  "loaded_files": {
+    "module2_llm_ready_patterns.json": true,
+    "module2_pattern_table_with_sentences.csv": true,
+    "module2_classifier_summary.csv": true,
+    "module3B_evidence_pack.json": true,
+    "module3D_llm_analysis.json": true,
+    "module3E_grounding_summary.json": true,
+    "module4_api_chatbot_responses.json": true,
+    "module4_answer_quality_summary.json": true
+  },
+  "evidence_categories": [
+    "classifier_sensitivity",
+    "normalization_stability",
+    "split_trend",
+    "most_sensitive_combinations",
+    "most_stable_combinations",
+    "llm_grounding_quality",
+    "limitations",
+    "overall_summary"
+  ],
+  "demo_interface": "gradio",
+  "fallback_available": true,
+  "custom_question_support": true,
+  "retrieval_method": "lightweight hybrid evidence search",
+  "supports_chinese_questions": true,
+  "custom_question_test_count": 12,
+  "custom_question_test_pass_count": 12,
+  "unknown_question_fallback_available": true,
+  "output_directory": "C:\\Users\\apple\\Desktop\\Project\\module4C_api_demo_outputs",
+  "status": "ready"
+}

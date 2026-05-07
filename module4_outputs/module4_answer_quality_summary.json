@@ -1,0 +1,27 @@
+{
+  "n_answers": 10,
+  "n_pass": 5,
+  "n_pass_with_warnings": 5,
+  "n_fail": 0,
+  "pass_rate": 0.5,
+  "pass_or_warning_rate": 1.0,
+  "warnings_by_type": {
+    "missing_entities": 1,
+    "ungrounded_numeric_values": 4
+  },
+  "failed_query_ids": [],
+  "warning_query_ids": [
+    "Q3",
+    "Q4",
+    "Q5",
+    "Q6",
+    "Q7"
+  ],
+  "overall_module4_quality_status": "pass_with_warnings",
+  "generation_mode": "template_based_grounded_demo",
+  "evaluated_files": [
+    "module4_outputs\\module4_chatbot_responses.json",
+    "module4_outputs\\module4_retrieved_evidence.json",
+    "module4_outputs\\module4_demo_context.json"
+  ]
+}

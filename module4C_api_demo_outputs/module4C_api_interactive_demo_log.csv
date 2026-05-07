@@ -1,0 +1,49 @@
+answer_preview,answer_source,api_error_message,evidence_available,evidence_count,quality_status,question_type,retrieval_method,rewritten_query,timestamp,user_question,warnings
+"Direct answer: The retrieved evidence points to batch sensitivity or larger split-related degradation in the highlighted classifier or classifier-normalization records.
+
+Key evidence: Rewritten project query: Which classifier appears most u",template_fallback_missing_key,,True,6,pass,classifier_sensitivity,lightweight_hybrid_evidence_search,Which classifier appears most unstable or batch-sensitive based on the extracted error-curve evidence?,2026-05-05T23:02:44,Which classifier is most batch-sensitive?,[]
+"Direct answer: The retrieved evidence points to relatively stable settings by comparing smaller classification error changes across splits.
+
+Key evidence: Rewritten project query: Which normalization method appears most stable across classi",template_fallback_missing_key,,True,6,pass,normalization_stability,lightweight_hybrid_evidence_search,Which normalization method appears most stable across classifier error curves?,2026-05-05T23:02:44,Which normalization method appears most stable?,[]
+"Direct answer: The retrieved evidence indicates that split changes, especially split 50 versus split 100, are associated with changes in classification error patterns.
+
+Key evidence: Rewritten project query: What do split 50 and split 100 s",template_fallback_missing_key,,True,3,pass,split_trend,lightweight_hybrid_evidence_search,What do split 50 and split 100 show about cross-batch classification error patterns?,2026-05-05T23:02:44,What happens when split changes from 50 to 100?,[]
+"Direct answer: The retrieved grounding evidence summarizes whether the LLM interpretation is consistent with observed project evidence.
+
+Key evidence: Rewritten project query: Is the LLM-generated interpretation grounded in the observed pro",template_fallback_missing_key,,True,6,pass,llm_grounding_quality,lightweight_hybrid_evidence_search,Is the LLM-generated interpretation grounded in the observed project evidence?,2026-05-05T23:02:44,Is the LLM-generated interpretation consistent with the observed evidence?,[]
+"Direct answer: The retrieved evidence points to batch sensitivity or larger split-related degradation in the highlighted classifier or classifier-normalization records.
+
+Key evidence: Rewritten project query: Which classifier appears most u",template_fallback_missing_key,,True,6,pass,classifier_sensitivity,lightweight_hybrid_evidence_search,Which classifier appears most unstable or batch-sensitive based on the extracted error-curve evidence?,2026-05-05T23:02:44,Which model gets worse when the split becomes more batch-separated?,[]
+"Direct answer: The retrieved evidence points to batch sensitivity or larger split-related degradation in the highlighted classifier or classifier-normalization records. The top retrieved example is knn|vsn.
+
+Key evidence: Rewritten project ",template_fallback_missing_key,,True,6,pass,most_sensitive_combinations,lightweight_hybrid_evidence_search,Which classifier-normalization combination shows the largest increase in classification error from split 50 to split 100?,2026-05-05T23:02:44,Which classifier-normalization setting looks the riskiest?,[]
+"Direct answer: The retrieved evidence points to relatively stable settings by comparing smaller classification error changes across splits. The top retrieved example is svm|non.
+
+Key evidence: Rewritten project query: Which classifier-norma",template_fallback_missing_key,,True,6,pass,most_stable_combinations,lightweight_hybrid_evidence_search,Which classifier-normalization combinations look most robust based on smaller classification error changes across splits?,2026-05-05T23:02:44,Is there any method that stays stable across splits?,[]
+"Direct answer: The retrieved evidence indicates that split changes, especially split 50 versus split 100, are associated with changes in classification error patterns.
+
+Key evidence: Rewritten project query: What do split 50 and split 100 s",template_fallback_missing_key,,True,6,pass,split_trend,lightweight_hybrid_evidence_search,What do split 50 and split 100 show about cross-batch classification error patterns?,2026-05-05T23:02:44,What does split 100 mean for generalization?,[]
+"Direct answer: The retrieved grounding evidence summarizes whether the LLM interpretation is consistent with observed project evidence.
+
+Key evidence: Rewritten project query: Is the LLM-generated interpretation grounded in the observed pro",template_fallback_missing_key,,True,6,pass,llm_grounding_quality,lightweight_hybrid_evidence_search,Is the LLM-generated interpretation grounded in the observed project evidence?,2026-05-05T23:02:44,Can I trust the LLM interpretation?,[]
+"Direct answer: The retrieved evidence provides a project-scoped answer about cross-batch robustness patterns.
+
+Key evidence: Rewritten project query: What do the extracted classifier-normalization error patterns suggest about cross-batch ro",template_fallback_missing_key,,True,6,pass,unknown,lightweight_hybrid_evidence_search,What do the extracted classifier-normalization error patterns suggest about cross-batch robustness?,2026-05-05T23:02:44,What is the weakest part of this demo?,[]
+"Direct answer: The retrieved evidence points to batch sensitivity or larger split-related degradation in the highlighted classifier or classifier-normalization records. The top retrieved example is knn|vsn.
+
+Key evidence: Rewritten project ",template_fallback_missing_key,,True,6,pass,most_sensitive_combinations,lightweight_hybrid_evidence_search,Which classifier-normalization combination shows the largest increase in classification error from split 50 to split 100?,2026-05-05T23:02:44,哪个分类器受 batch 影响最大？,[]
+"Direct answer: The retrieved evidence points to relatively stable settings by comparing smaller classification error changes across splits.
+
+Key evidence: Rewritten project query: Which normalization method appears most stable across classi",template_fallback_missing_key,,True,6,pass,normalization_stability,lightweight_hybrid_evidence_search,Which normalization method appears most stable across classifier error curves?,2026-05-05T23:02:44,哪种 normalization 最稳定？,[]
+"Direct answer: The retrieved evidence indicates that split changes, especially split 50 versus split 100, are associated with changes in classification error patterns.
+
+Key evidence: Rewritten project query: What do split 50 and split 100 s",template_fallback_missing_key,,True,2,pass,split_trend,lightweight_hybrid_evidence_search,What do split 50 and split 100 show about cross-batch classification error patterns?,2026-05-05T23:02:44,split 从 50 到 100 说明了什么？,[]
+"Direct answer: The retrieved grounding evidence summarizes whether the LLM interpretation is consistent with observed project evidence.
+
+Key evidence: Rewritten project query: Is the LLM-generated interpretation grounded in the observed pro",template_fallback_missing_key,,True,3,pass,llm_grounding_quality,lightweight_hybrid_evidence_search,Is the LLM-generated interpretation grounded in the observed project evidence?,2026-05-05T23:02:44,这个 LLM 分析有没有幻觉风险？,[]
+"Direct answer: The retrieved evidence provides a project-scoped answer about cross-batch robustness patterns.
+
+Key evidence: Rewritten project query: What do the extracted classifier-normalization error patterns suggest about cross-batch ro",template_fallback_missing_key,,True,6,pass,overall_summary,lightweight_hybrid_evidence_search,What do the extracted classifier-normalization error patterns suggest about cross-batch robustness?,2026-05-05T23:02:44,这个结果可以说明 batch effect 吗？,[]
+"Direct answer: The retrieved evidence supports a cautious limitations answer focused on scenario scope, rule-based extraction, and non-causal interpretation.
+
+Key evidence: Rewritten project query: What limitations should be stated for this",template_fallback_missing_key,,True,1,pass,limitations,lightweight_hybrid_evidence_search,What limitations should be stated for this demo and analysis?,2026-05-05T23:02:44,如果老师问这个 demo 的局限，我该怎么回答？,[]

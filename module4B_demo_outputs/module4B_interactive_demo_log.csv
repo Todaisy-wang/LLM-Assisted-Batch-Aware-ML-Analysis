@@ -1,0 +1,4 @@
+timestamp,user_question,question_type,answer_source,quality_status,warnings,evidence_available,answer_preview
+2026-05-05T22:01:47,Which classifier is most batch-sensitive?,classifier_sensitivity,template,pass,[],True,"Direct answer: The classifier that appears most batch-sensitive is knn.
+
+Key evidence: For classifier knn, 3 out of 4 normalization settings are batch-sensitive. The most sensitive normalization is vsn, and the least sensitive normalization"

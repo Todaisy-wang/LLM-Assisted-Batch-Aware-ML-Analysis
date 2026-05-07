@@ -1,0 +1,420 @@
+{
+  "project_scope": {
+    "module_name": "Module 3B Evidence Pack Builder",
+    "scenario": "jama_scenario1_3",
+    "metric": "classification error",
+    "split_values": [
+      50,
+      70,
+      80,
+      90,
+      100
+    ],
+    "interpretation_note": "Higher split values indicate stronger batch-separated evaluation.",
+    "analysis_scope_note": "Use only the detected pattern labels and numeric features. Do not infer biological mechanisms.",
+    "explicit_constraints": [
+      "use only provided evidence",
+      "do not infer biological mechanisms",
+      "do not claim causality"
+    ]
+  },
+  "scenario_overview": {
+    "n_classifiers": 6,
+    "n_normalizations": 4,
+    "n_curves": 24,
+    "overall_pattern_counts": {
+      "trend_label": {
+        "increasing": 22,
+        "flat_or_weak": 2
+      },
+      "robustness_flag": {
+        "batch_sensitive": 16,
+        "moderately_sensitive": 8
+      },
+      "spike_type": {
+        "no_major_spike": 16,
+        "late_extreme_split_spike": 8
+      },
+      "curve_shape": {
+        "non_monotonic_increase": 8,
+        "monotonic_with_spike": 7,
+        "gradual_monotonic_increase": 7,
+        "mostly_flat": 2
+      },
+      "pattern_strength": {
+        "moderate": 13,
+        "weak": 8,
+        "strong": 3
+      },
+      "degradation_type": {
+        "fluctuating": 9,
+        "late_spike_driven": 8,
+        "gradual_degradation": 7
+      }
+    },
+    "dominant_observation": "Most classifier-normalization curves show increasing error as split moves from 50 to 100, suggesting reduced robustness under stronger batch-separated evaluation.",
+    "dominant_failure_mode": "The most frequent degradation type is fluctuating."
+  },
+  "most_sensitive_combinations": [
+    {
+      "classifier": "knn",
+      "normalization": "vsn",
+      "delta_100_50": 0.30602099225952395,
+      "error_50": 0.114774114774115,
+      "error_100": 0.420795107033639,
+      "robustness_flag": "batch_sensitive",
+      "degradation_type": "late_spike_driven",
+      "pattern_strength": "strong"
+    },
+    {
+      "classifier": "knn",
+      "normalization": "mn",
+      "delta_100_50": 0.2711709289690939,
+      "error_50": 0.1214896214896214,
+      "error_100": 0.3926605504587153,
+      "robustness_flag": "batch_sensitive",
+      "degradation_type": "late_spike_driven",
+      "pattern_strength": "strong"
+    },
+    {
+      "classifier": "knn",
+      "normalization": "qn",
+      "delta_100_50": 0.2699409662712411,
+      "error_50": 0.1178266178266179,
+      "error_100": 0.387767584097859,
+      "robustness_flag": "batch_sensitive",
+      "degradation_type": "late_spike_driven",
+      "pattern_strength": "strong"
+    },
+    {
+      "classifier": "xgb",
+      "normalization": "qn",
+      "delta_100_50": 0.1665703307905143,
+      "error_50": 0.114163614163614,
+      "error_100": 0.2807339449541283,
+      "robustness_flag": "batch_sensitive",
+      "degradation_type": "late_spike_driven",
+      "pattern_strength": "moderate"
+    },
+    {
+      "classifier": "lasso",
+      "normalization": "vsn",
+      "delta_100_50": 0.166569210605908,
+      "error_50": 0.1135531135531136,
+      "error_100": 0.2801223241590216,
+      "robustness_flag": "batch_sensitive",
+      "degradation_type": "gradual_degradation",
+      "pattern_strength": "moderate"
+    }
+  ],
+  "most_stable_combinations": [
+    {
+      "classifier": "svm",
+      "normalization": "non",
+      "delta_100_50": 0.03332325167187561,
+      "error_50": 0.161172161172161,
+      "error_100": 0.1944954128440366,
+      "robustness_flag": "moderately_sensitive",
+      "degradation_type": "fluctuating",
+      "pattern_strength": "weak"
+    },
+    {
+      "classifier": "pam",
+      "normalization": "qn",
+      "delta_100_50": 0.0504856000268846,
+      "error_50": 0.181318681318681,
+      "error_100": 0.2318042813455656,
+      "robustness_flag": "moderately_sensitive",
+      "degradation_type": "fluctuating",
+      "pattern_strength": "weak"
+    },
+    {
+      "classifier": "rf",
+      "normalization": "non",
+      "delta_100_50": 0.058962036943687984,
+      "error_50": 0.1343101343101346,
+      "error_100": 0.1932721712538226,
+      "robustness_flag": "moderately_sensitive",
+      "degradation_type": "fluctuating",
+      "pattern_strength": "weak"
+    },
+    {
+      "classifier": "knn",
+      "normalization": "non",
+      "delta_100_50": 0.07363421491861871,
+      "error_50": 0.1306471306471306,
+      "error_100": 0.2042813455657493,
+      "robustness_flag": "moderately_sensitive",
+      "degradation_type": "gradual_degradation",
+      "pattern_strength": "weak"
+    },
+    {
+      "classifier": "xgb",
+      "normalization": "non",
+      "delta_100_50": 0.07849469592588851,
+      "error_50": 0.1129426129426131,
+      "error_100": 0.1914373088685016,
+      "robustness_flag": "moderately_sensitive",
+      "degradation_type": "gradual_degradation",
+      "pattern_strength": "weak"
+    }
+  ],
+  "classifier_level_evidence": [
+    {
+      "classifier": "knn",
+      "n_normalizations": 4,
+      "n_batch_sensitive": 3,
+      "n_moderately_sensitive": 1,
+      "n_relatively_stable": 0,
+      "n_spike_curves": 3,
+      "mean_delta_100_50": 0.23019177560461943,
+      "max_delta_100_50": 0.30602099225952395,
+      "min_delta_100_50": 0.07363421491861871,
+      "most_sensitive_normalization": "vsn",
+      "least_sensitive_normalization": "non",
+      "dominant_curve_shape": "monotonic_with_spike",
+      "dominant_degradation_type": "late_spike_driven",
+      "dominant_robustness_flag": "batch_sensitive",
+      "classifier_summary_sentence": "For classifier knn, 3 out of 4 normalization settings are batch-sensitive. The most sensitive normalization is vsn, and the least sensitive normalization is non. The dominant degradation type is late_spike_driven."
+    },
+    {
+      "classifier": "lasso",
+      "n_normalizations": 4,
+      "n_batch_sensitive": 3,
+      "n_moderately_sensitive": 1,
+      "n_relatively_stable": 0,
+      "n_spike_curves": 0,
+      "mean_delta_100_50": 0.12146189692061259,
+      "max_delta_100_50": 0.166569210605908,
+      "min_delta_100_50": 0.0852169237490341,
+      "most_sensitive_normalization": "vsn",
+      "least_sensitive_normalization": "non",
+      "dominant_curve_shape": "gradual_monotonic_increase",
+      "dominant_degradation_type": "gradual_degradation",
+      "dominant_robustness_flag": "batch_sensitive",
+      "classifier_summary_sentence": "For classifier lasso, 3 out of 4 normalization settings are batch-sensitive. The most sensitive normalization is vsn, and the least sensitive normalization is non. The dominant degradation type is gradual_degradation."
+    },
+    {
+      "classifier": "pam",
+      "n_normalizations": 4,
+      "n_batch_sensitive": 1,
+      "n_moderately_sensitive": 3,
+      "n_relatively_stable": 0,
+      "n_spike_curves": 0,
+      "mean_delta_100_50": 0.08764772434497206,
+      "max_delta_100_50": 0.1330969743813783,
+      "min_delta_100_50": 0.0504856000268846,
+      "most_sensitive_normalization": "non",
+      "least_sensitive_normalization": "qn",
+      "dominant_curve_shape": "non_monotonic_increase",
+      "dominant_degradation_type": "fluctuating",
+      "dominant_robustness_flag": "moderately_sensitive",
+      "classifier_summary_sentence": "For classifier pam, 1 out of 4 normalization settings are batch-sensitive. The most sensitive normalization is non, and the least sensitive normalization is qn. The dominant degradation type is fluctuating."
+    },
+    {
+      "classifier": "rf",
+      "n_normalizations": 4,
+      "n_batch_sensitive": 3,
+      "n_moderately_sensitive": 1,
+      "n_relatively_stable": 0,
+      "n_spike_curves": 2,
+      "mean_delta_100_50": 0.13127191361136314,
+      "max_delta_100_50": 0.16596543110304637,
+      "min_delta_100_50": 0.058962036943687984,
+      "most_sensitive_normalization": "mn",
+      "least_sensitive_normalization": "non",
+      "dominant_curve_shape": "non_monotonic_increase",
+      "dominant_degradation_type": "late_spike_driven",
+      "dominant_robustness_flag": "batch_sensitive",
+      "classifier_summary_sentence": "For classifier rf, 3 out of 4 normalization settings are batch-sensitive. The most sensitive normalization is mn, and the least sensitive normalization is non. The dominant degradation type is late_spike_driven."
+    },
+    {
+      "classifier": "svm",
+      "n_normalizations": 4,
+      "n_batch_sensitive": 3,
+      "n_moderately_sensitive": 1,
+      "n_relatively_stable": 0,
+      "n_spike_curves": 2,
+      "mean_delta_100_50": 0.12621484020566584,
+      "max_delta_100_50": 0.16351558736879832,
+      "min_delta_100_50": 0.03332325167187561,
+      "most_sensitive_normalization": "qn",
+      "least_sensitive_normalization": "non",
+      "dominant_curve_shape": "monotonic_with_spike",
+      "dominant_degradation_type": "late_spike_driven",
+      "dominant_robustness_flag": "batch_sensitive",
+      "classifier_summary_sentence": "For classifier svm, 3 out of 4 normalization settings are batch-sensitive. The most sensitive normalization is qn, and the least sensitive normalization is non. The dominant degradation type is late_spike_driven."
+    },
+    {
+      "classifier": "xgb",
+      "n_normalizations": 4,
+      "n_batch_sensitive": 3,
+      "n_moderately_sensitive": 1,
+      "n_relatively_stable": 0,
+      "n_spike_curves": 1,
+      "mean_delta_100_50": 0.1298800842378824,
+      "max_delta_100_50": 0.1665703307905143,
+      "min_delta_100_50": 0.07849469592588851,
+      "most_sensitive_normalization": "qn",
+      "least_sensitive_normalization": "non",
+      "dominant_curve_shape": "non_monotonic_increase",
+      "dominant_degradation_type": "fluctuating",
+      "dominant_robustness_flag": "batch_sensitive",
+      "classifier_summary_sentence": "For classifier xgb, 3 out of 4 normalization settings are batch-sensitive. The most sensitive normalization is qn, and the least sensitive normalization is non. The dominant degradation type is fluctuating."
+    }
+  ],
+  "normalization_level_evidence": [
+    {
+      "normalization": "mn",
+      "n_curves": 6,
+      "n_batch_sensitive": 5,
+      "n_moderately_sensitive": 1,
+      "n_relatively_stable": 0,
+      "n_spike_curves": 3,
+      "mean_delta_100_50": 0.1568013875353325,
+      "max_delta_100_50": 0.2711709289690939,
+      "min_delta_100_50": 0.08227755934177938,
+      "mean_error_50": 0.12342287342287335,
+      "mean_error_100": 0.2802242609582058,
+      "dominant_degradation_type": "late_spike_driven",
+      "dominant_robustness_flag": "batch_sensitive"
+    },
+    {
+      "normalization": "non",
+      "n_curves": 6,
+      "n_batch_sensitive": 1,
+      "n_moderately_sensitive": 5,
+      "n_relatively_stable": 0,
+      "n_spike_curves": 0,
+      "mean_delta_100_50": 0.07712134959841387,
+      "max_delta_100_50": 0.1330969743813783,
+      "min_delta_100_50": 0.03332325167187561,
+      "mean_error_50": 0.1422466422466422,
+      "mean_error_100": 0.21936799184505607,
+      "dominant_degradation_type": "fluctuating",
+      "dominant_robustness_flag": "moderately_sensitive"
+    },
+    {
+      "normalization": "qn",
+      "n_curves": 6,
+      "n_batch_sensitive": 5,
+      "n_moderately_sensitive": 1,
+      "n_relatively_stable": 0,
+      "n_spike_curves": 4,
+      "mean_delta_100_50": 0.15456997979933748,
+      "max_delta_100_50": 0.2699409662712411,
+      "min_delta_100_50": 0.0504856000268846,
+      "mean_error_50": 0.12952787952787947,
+      "mean_error_100": 0.284097859327217,
+      "dominant_degradation_type": "late_spike_driven",
+      "dominant_robustness_flag": "batch_sensitive"
+    },
+    {
+      "normalization": "vsn",
+      "n_curves": 6,
+      "n_batch_sensitive": 5,
+      "n_moderately_sensitive": 1,
+      "n_relatively_stable": 0,
+      "n_spike_curves": 1,
+      "mean_delta_100_50": 0.1626194396836598,
+      "max_delta_100_50": 0.30602099225952395,
+      "min_delta_100_50": 0.084730763629846,
+      "mean_error_50": 0.1275946275946276,
+      "mean_error_100": 0.2902140672782874,
+      "dominant_degradation_type": "gradual_degradation",
+      "dominant_robustness_flag": "batch_sensitive"
+    }
+  ],
+  "representative_pattern_sentences": [
+    {
+      "selection_reason": "top_sensitive",
+      "classifier": "knn",
+      "normalization": "vsn",
+      "pattern_strength": "strong",
+      "trend_label": "increasing",
+      "robustness_flag": "batch_sensitive",
+      "pattern_sentence": "For scenario jama_scenario1_3, knn with vsn normalization shows increasing error from 0.115 at split=50 to 0.421 at split=100. The delta_100_50 is 0.306; robustness_flag=batch_sensitive, pattern_strength=strong, degradation_type=late_spike_driven, and spike_type=late_extreme_split_spike with the largest absolute step change at 90-100."
+    },
+    {
+      "selection_reason": "top_sensitive",
+      "classifier": "knn",
+      "normalization": "mn",
+      "pattern_strength": "strong",
+      "trend_label": "increasing",
+      "robustness_flag": "batch_sensitive",
+      "pattern_sentence": "For scenario jama_scenario1_3, knn with mn normalization shows increasing error from 0.121 at split=50 to 0.393 at split=100. The delta_100_50 is 0.271; robustness_flag=batch_sensitive, pattern_strength=strong, degradation_type=late_spike_driven, and spike_type=late_extreme_split_spike with the largest absolute step change at 90-100."
+    },
+    {
+      "selection_reason": "top_sensitive",
+      "classifier": "knn",
+      "normalization": "qn",
+      "pattern_strength": "strong",
+      "trend_label": "increasing",
+      "robustness_flag": "batch_sensitive",
+      "pattern_sentence": "For scenario jama_scenario1_3, knn with qn normalization shows increasing error from 0.118 at split=50 to 0.388 at split=100. The delta_100_50 is 0.270; robustness_flag=batch_sensitive, pattern_strength=strong, degradation_type=late_spike_driven, and spike_type=late_extreme_split_spike with the largest absolute step change at 90-100."
+    },
+    {
+      "selection_reason": "top_sensitive",
+      "classifier": "xgb",
+      "normalization": "qn",
+      "pattern_strength": "moderate",
+      "trend_label": "increasing",
+      "robustness_flag": "batch_sensitive",
+      "pattern_sentence": "For scenario jama_scenario1_3, xgb with qn normalization shows increasing error from 0.114 at split=50 to 0.281 at split=100. The delta_100_50 is 0.167; robustness_flag=batch_sensitive, pattern_strength=moderate, degradation_type=late_spike_driven, and spike_type=late_extreme_split_spike with the largest absolute step change at 90-100."
+    },
+    {
+      "selection_reason": "top_sensitive",
+      "classifier": "lasso",
+      "normalization": "vsn",
+      "pattern_strength": "moderate",
+      "trend_label": "increasing",
+      "robustness_flag": "batch_sensitive",
+      "pattern_sentence": "For scenario jama_scenario1_3, lasso with vsn normalization shows increasing error from 0.114 at split=50 to 0.280 at split=100. The delta_100_50 is 0.167; robustness_flag=batch_sensitive, pattern_strength=moderate, degradation_type=gradual_degradation, and spike_type=no_major_spike with the largest absolute step change at 90-100."
+    },
+    {
+      "selection_reason": "top_stable",
+      "classifier": "svm",
+      "normalization": "non",
+      "pattern_strength": "weak",
+      "trend_label": "flat_or_weak",
+      "robustness_flag": "moderately_sensitive",
+      "pattern_sentence": "For scenario jama_scenario1_3, svm with non normalization shows flat_or_weak error from 0.161 at split=50 to 0.194 at split=100. The delta_100_50 is 0.033; robustness_flag=moderately_sensitive, pattern_strength=weak, degradation_type=fluctuating, and spike_type=no_major_spike with the largest absolute step change at 90-100."
+    },
+    {
+      "selection_reason": "top_stable",
+      "classifier": "pam",
+      "normalization": "qn",
+      "pattern_strength": "weak",
+      "trend_label": "flat_or_weak",
+      "robustness_flag": "moderately_sensitive",
+      "pattern_sentence": "For scenario jama_scenario1_3, pam with qn normalization shows flat_or_weak error from 0.181 at split=50 to 0.232 at split=100. The delta_100_50 is 0.050; robustness_flag=moderately_sensitive, pattern_strength=weak, degradation_type=fluctuating, and spike_type=no_major_spike with the largest absolute step change at 80-90."
+    },
+    {
+      "selection_reason": "top_stable",
+      "classifier": "rf",
+      "normalization": "non",
+      "pattern_strength": "weak",
+      "trend_label": "increasing",
+      "robustness_flag": "moderately_sensitive",
+      "pattern_sentence": "For scenario jama_scenario1_3, rf with non normalization shows increasing error from 0.134 at split=50 to 0.193 at split=100. The delta_100_50 is 0.059; robustness_flag=moderately_sensitive, pattern_strength=weak, degradation_type=fluctuating, and spike_type=no_major_spike with the largest absolute step change at 80-90."
+    },
+    {
+      "selection_reason": "top_stable",
+      "classifier": "knn",
+      "normalization": "non",
+      "pattern_strength": "weak",
+      "trend_label": "increasing",
+      "robustness_flag": "moderately_sensitive",
+      "pattern_sentence": "For scenario jama_scenario1_3, knn with non normalization shows increasing error from 0.131 at split=50 to 0.204 at split=100. The delta_100_50 is 0.074; robustness_flag=moderately_sensitive, pattern_strength=weak, degradation_type=gradual_degradation, and spike_type=no_major_spike with the largest absolute step change at 90-100."
+    },
+    {
+      "selection_reason": "top_stable",
+      "classifier": "xgb",
+      "normalization": "non",
+      "pattern_strength": "weak",
+      "trend_label": "increasing",
+      "robustness_flag": "moderately_sensitive",
+      "pattern_sentence": "For scenario jama_scenario1_3, xgb with non normalization shows increasing error from 0.113 at split=50 to 0.191 at split=100. The delta_100_50 is 0.078; robustness_flag=moderately_sensitive, pattern_strength=weak, degradation_type=gradual_degradation, and spike_type=no_major_spike with the largest absolute step change at 90-100."
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "n_answers": 10,
+  "n_pass": 0,
+  "n_pass_with_warnings": 0,
+  "n_fail": 10,
+  "pass_rate": 0.0,
+  "pass_or_warning_rate": 0.0,
+  "warnings_by_type": {
+    "missing_entities": 4,
+    "ungrounded_numeric_values": 7,
+    "missing_evidence_terms": 3
+  },
+  "failed_query_ids": [
+    "Q1",
+    "Q2",
+    "Q3",
+    "Q4",
+    "Q5",
+    "Q6",
+    "Q7",
+    "Q8",
+    "Q9",
+    "Q10"
+  ],
+  "warning_query_ids": [
+    "Q2",
+    "Q3",
+    "Q4",
+    "Q5",
+    "Q6",
+    "Q7",
+    "Q8",
+    "Q9",
+    "Q10"
+  ],
+  "overall_module4_quality_status": "fail",
+  "generation_mode": "template_based_grounded_demo",
+  "evaluated_files": [
+    "module4_outputs/module4_chatbot_responses.json",
+    "module4_outputs/module4_retrieved_evidence.json",
+    "module4_outputs/module4_demo_context.json"
+  ]
+}

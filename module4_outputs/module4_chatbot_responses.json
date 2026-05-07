@@ -1,0 +1,411 @@
+[
+  {
+    "query_id": "Q1",
+    "query": "What is the overall pattern observed across split values?",
+    "detected_query_type": "scenario_overview",
+    "route_subtype": "overall_pattern",
+    "answer": "Direct Answer:\nAcross jama_scenario1_3, most curves show increasing classification error as split values move from split=50 toward split=100. The retrieved counts show 22 increasing curves and 2 flat_or_weak curves.\n\nEvidence Used:\nThe answer uses split values [50, 70, 80, 90, 100], overall_pattern_counts, and the dominant observation: Most classifier-normalization curves show increasing error as split moves from 50 to 100, suggesting reduced robustness under stronger batch-separated evaluation.\n\nInterpretation:\nThis pattern is consistent with reduced robustness under stronger batch-separated evaluation, because classification error is generally higher at larger split values.\n\nLimitation / Caution:\nThis describes observed performance patterns only. Use only the detected pattern labels and numeric features. Do not infer biological mechanisms. The answer uses only provided evidence and does not infer biological mechanisms.",
+    "evidence_keys_used": [
+      "scenario",
+      "metric",
+      "split_values",
+      "scenario_overview",
+      "overall_pattern_counts",
+      "dominant_observation",
+      "analysis_scope_note",
+      "project_constraints"
+    ],
+    "generation_mode": "template_based_grounded_demo",
+    "answer_sections_present": {
+      "Direct Answer:": true,
+      "Evidence Used:": true,
+      "Interpretation:": true,
+      "Limitation / Caution:": true
+    },
+    "answer_numeric_values_used": [
+      "50",
+      "100",
+      "22",
+      "2",
+      "50",
+      "70",
+      "80",
+      "90",
+      "100",
+      "50",
+      "100"
+    ],
+    "answer_entities_used": {
+      "classifiers": [],
+      "normalizations": []
+    },
+    "answer_warnings": []
+  },
+  {
+    "query_id": "Q2",
+    "query": "Which classifier appears most batch-sensitive?",
+    "detected_query_type": "classifier_comparison",
+    "route_subtype": "batch_sensitive_classifier",
+    "answer": "Direct Answer:\nThe classifier that appears most batch-sensitive is knn, based on the highest mean_delta_100_50 of 0.230 for classification error.\n\nEvidence Used:\nClassifier-level evidence reports 3 batch-sensitive normalization settings for knn. The top sensitive combinations include knn|vsn, knn|mn, knn|qn.\n\nInterpretation:\nThis indicates that, in this scenario, the classifier's classification error changes more strongly between split=50 and split=100 than the other classifiers.\n\nLimitation / Caution:\nThis comparison is scenario-specific and limited to the evaluated classifiers, normalizations, split values, and structured evidence. It does not support causal or biological conclusions.",
+    "evidence_keys_used": [
+      "metric",
+      "split_values",
+      "classifier_level_evidence",
+      "most_sensitive_combinations",
+      "most_stable_combinations",
+      "overall_pattern_counts",
+      "dominant_observation"
+    ],
+    "generation_mode": "template_based_grounded_demo",
+    "answer_sections_present": {
+      "Direct Answer:": true,
+      "Evidence Used:": true,
+      "Interpretation:": true,
+      "Limitation / Caution:": true
+    },
+    "answer_numeric_values_used": [
+      "00",
+      "0",
+      "0.230",
+      "3",
+      "50",
+      "100"
+    ],
+    "answer_entities_used": {
+      "classifiers": [
+        "knn"
+      ],
+      "normalizations": [
+        "mn",
+        "qn",
+        "vsn"
+      ]
+    },
+    "answer_warnings": []
+  },
+  {
+    "query_id": "Q3",
+    "query": "Which normalization method appears most stable across classifiers?",
+    "detected_query_type": "normalization_comparison",
+    "route_subtype": "stable_normalization",
+    "answer": "Direct Answer:\nThe normalization method that appears most stable across classifiers is non, with the lowest mean_delta_100_50 of 0.077 for classification error.\n\nEvidence Used:\nThe retrieved normalization evidence reports dominant_robustness_flag=moderately_sensitive and 5 moderately_sensitive curves for non.\n\nInterpretation:\nHere, stable means a smaller average change in classification error between split=50 and split=100 across the tested classifiers.\n\nLimitation / Caution:\nThis does not mean non is universally best. Use only the detected pattern labels and numeric features. Do not infer biological mechanisms.",
+    "evidence_keys_used": [
+      "metric",
+      "split_values",
+      "normalization_level_evidence",
+      "most_stable_combinations",
+      "most_sensitive_combinations",
+      "analysis_scope_note"
+    ],
+    "generation_mode": "template_based_grounded_demo",
+    "answer_sections_present": {
+      "Direct Answer:": true,
+      "Evidence Used:": true,
+      "Interpretation:": true,
+      "Limitation / Caution:": true
+    },
+    "answer_numeric_values_used": [
+      "00",
+      "0",
+      "0.077",
+      "5",
+      "50",
+      "100"
+    ],
+    "answer_entities_used": {
+      "classifiers": [],
+      "normalizations": [
+        "non"
+      ]
+    },
+    "answer_warnings": []
+  },
+  {
+    "query_id": "Q4",
+    "query": "Which classifier-normalization combination appears most stable?",
+    "detected_query_type": "classifier_comparison",
+    "route_subtype": "stable_combination_comparison",
+    "answer": "Direct Answer:\nThe most stable classifier-normalization pair is svm|non, with delta_100_50=0.033 for classification error.\n\nEvidence Used:\nFor svm|non, error_50=0.161 and error_100=0.194. The stable-combination ranking lists this pair first.\n\nInterpretation:\nIn this answer, stable means a smaller change in classification error between split=50 and split=100, not necessarily the lowest absolute classification error.\n\nLimitation / Caution:\nThis is a comparison within the current retrieved evidence only and should not be generalized beyond the tested scenario, classifiers, and normalizations.",
+    "evidence_keys_used": [
+      "metric",
+      "split_values",
+      "most_stable_combinations",
+      "most_sensitive_combinations",
+      "stable_combination_lookup_subset"
+    ],
+    "generation_mode": "template_based_grounded_demo",
+    "answer_sections_present": {
+      "Direct Answer:": true,
+      "Evidence Used:": true,
+      "Interpretation:": true,
+      "Limitation / Caution:": true
+    },
+    "answer_numeric_values_used": [
+      "00",
+      "0",
+      "0.033",
+      "0",
+      "0.161",
+      "00",
+      "0.194",
+      "50",
+      "100"
+    ],
+    "answer_entities_used": {
+      "classifiers": [
+        "svm"
+      ],
+      "normalizations": [
+        "non"
+      ]
+    },
+    "answer_warnings": []
+  },
+  {
+    "query_id": "Q5",
+    "query": "How does split=100 differ from split=50 in this experiment?",
+    "detected_query_type": "split_interpretation",
+    "route_subtype": "split_50_vs_100",
+    "answer": "Direct Answer:\nsplit=50 represents a less batch-separated evaluation setting, while split=100 represents stronger batch-separated evaluation. In this experiment, many curves show higher classification error at split=100 than at split=50.\n\nEvidence Used:\nThe interpretation note says: Higher split values indicate stronger batch-separated evaluation. A sensitive example is knn|vsn with delta_100_50=0.306; a stable example is svm|non with delta_100_50=0.033.\n\nInterpretation:\nThe split comparison is therefore a robustness pattern: classification error often increases under the stronger batch-separated setting.\n\nLimitation / Caution:\nThe split setting should not be described as causing the error increase. The answer is limited to observed classification error patterns in the retrieved evidence.",
+    "evidence_keys_used": [
+      "metric",
+      "split_values",
+      "interpretation_note",
+      "dominant_observation",
+      "most_sensitive_combinations",
+      "most_stable_combinations",
+      "project_constraints"
+    ],
+    "generation_mode": "template_based_grounded_demo",
+    "answer_sections_present": {
+      "Direct Answer:": true,
+      "Evidence Used:": true,
+      "Interpretation:": true,
+      "Limitation / Caution:": true
+    },
+    "answer_numeric_values_used": [
+      "50",
+      "100",
+      "100",
+      "50",
+      "00",
+      "0",
+      "0.306",
+      "00",
+      "0",
+      "0.033"
+    ],
+    "answer_entities_used": {
+      "classifiers": [
+        "knn",
+        "svm"
+      ],
+      "normalizations": [
+        "non",
+        "vsn"
+      ]
+    },
+    "answer_warnings": []
+  },
+  {
+    "query_id": "Q6",
+    "query": "What does a large delta_100_50 indicate?",
+    "detected_query_type": "split_interpretation",
+    "route_subtype": "delta_interpretation",
+    "answer": "Direct Answer:\ndelta_100_50 is the difference between classification error at split=100 and classification error at split=50. A large positive delta_100_50 means classification error is higher at split=100.\n\nEvidence Used:\nA high-delta example is knn|vsn with delta_100_50=0.306. A low-delta example is svm|non with delta_100_50=0.033.\n\nInterpretation:\nBecause split=100 is the stronger batch-separated evaluation setting, a larger delta_100_50 is evidence of weaker robustness across those split settings.\n\nLimitation / Caution:\nThis is a numeric performance interpretation only. It does not infer biological mechanisms or make claims outside the provided evidence.",
+    "evidence_keys_used": [
+      "metric",
+      "split_values",
+      "interpretation_note",
+      "most_sensitive_combinations",
+      "most_stable_combinations",
+      "example_high_delta_combination",
+      "example_low_delta_combination",
+      "project_constraints"
+    ],
+    "generation_mode": "template_based_grounded_demo",
+    "answer_sections_present": {
+      "Direct Answer:": true,
+      "Evidence Used:": true,
+      "Interpretation:": true,
+      "Limitation / Caution:": true
+    },
+    "answer_numeric_values_used": [
+      "00",
+      "0",
+      "100",
+      "50",
+      "00",
+      "0",
+      "100",
+      "00",
+      "0",
+      "0.306",
+      "00",
+      "0",
+      "0.033",
+      "100",
+      "00",
+      "0"
+    ],
+    "answer_entities_used": {
+      "classifiers": [
+        "knn",
+        "svm"
+      ],
+      "normalizations": [
+        "non",
+        "vsn"
+      ]
+    },
+    "answer_warnings": []
+  },
+  {
+    "query_id": "Q7",
+    "query": "How should I interpret knn with vsn normalization?",
+    "detected_query_type": "specific_combination",
+    "route_subtype": "specific_combination",
+    "answer": "Direct Answer:\nFor knn|vsn, the classifier is knn and the normalization is vsn. The classification error rises from error_50=0.115 at split=50 to error_100=0.421 at split=100, with delta_100_50=0.306.\n\nEvidence Used:\nThe retrieved record reports robustness_flag=batch_sensitive, degradation_type=late_spike_driven, pattern_strength=strong, and spike_type=late_extreme_split_spike.\n\nInterpretation:\nThis supports interpreting knn|vsn as batch-sensitive in this scenario, with a late_spike_driven pattern in classification error.\n\nLimitation / Caution:\nThis answer uses only the exact retrieved combination evidence and does not compare against unrelated combinations or infer biological mechanisms.",
+    "evidence_keys_used": [
+      "metric",
+      "split_values",
+      "expected_combination_key",
+      "combination_key_exists",
+      "combination_evidence",
+      "project_constraints"
+    ],
+    "generation_mode": "template_based_grounded_demo",
+    "answer_sections_present": {
+      "Direct Answer:": true,
+      "Evidence Used:": true,
+      "Interpretation:": true,
+      "Limitation / Caution:": true
+    },
+    "answer_numeric_values_used": [
+      "0",
+      "0.115",
+      "50",
+      "00",
+      "0.421",
+      "100",
+      "00",
+      "0",
+      "0.306"
+    ],
+    "answer_entities_used": {
+      "classifiers": [
+        "knn"
+      ],
+      "normalizations": [
+        "vsn"
+      ]
+    },
+    "answer_warnings": []
+  },
+  {
+    "query_id": "Q8",
+    "query": "Are the LLM-generated interpretations consistent with the observed evidence?",
+    "detected_query_type": "grounding_reliability",
+    "route_subtype": "grounding_consistency",
+    "answer": "Direct Answer:\nThe LLM-generated interpretation is broadly consistent with the observed evidence under this rule-based check, with overall status pass_with_warnings.\n\nEvidence Used:\nThe grounding summary reports classifier coverage=0.500, normalization coverage=0.750, top sensitive pair coverage=1.000, and top stable pair coverage=1.000.\n\nInterpretation:\nA pass_with_warnings result means the analysis is usable for a grounded demo, but some coverage checks may be incomplete.\n\nLimitation / Caution:\nThis is not a full factual proof or benchmark-level evaluation. It is a lightweight rule-based grounding check over the retrieved structured evidence.",
+    "evidence_keys_used": [
+      "grounding_summary",
+      "llm_analysis",
+      "project_constraints",
+      "analysis_scope_note"
+    ],
+    "generation_mode": "template_based_grounded_demo",
+    "answer_sections_present": {
+      "Direct Answer:": true,
+      "Evidence Used:": true,
+      "Interpretation:": true,
+      "Limitation / Caution:": true
+    },
+    "answer_numeric_values_used": [
+      "0.500",
+      "0.750",
+      "1.000",
+      "1.000"
+    ],
+    "answer_entities_used": {
+      "classifiers": [],
+      "normalizations": []
+    },
+    "answer_warnings": []
+  },
+  {
+    "query_id": "Q9",
+    "query": "What are the main limitations of this analysis?",
+    "detected_query_type": "limitation_summary",
+    "route_subtype": "limitations",
+    "answer": "Direct Answer:\nThe main limitations are that the analysis is restricted to the current scenario, tested classifiers, tested normalizations, split values, and classification error metric.\n\nEvidence Used:\nThe retrieved constraints are: use only provided evidence, do not infer biological mechanisms, do not claim causality. The grounding status is pass_with_warnings. The LLM limitation text states: The evidence is limited to the specific classifiers and normalizations tested within this experiment, and the findings may not generalize to other contexts or datasets. Additionally, the analysis does not account for potential biological variability or mechanisms underlying the observed patterns.\n\nInterpretation:\nThe evidence supports a performance-pattern summary, but not external conclusions or biological explanation. Coverage warnings should be treated as caution for demo use.\n\nLimitation / Caution:\nUse only the detected pattern labels and numeric features. Do not infer biological mechanisms. This is a lightweight demo, not a full benchmark-level LLM evaluation.",
+    "evidence_keys_used": [
+      "project_constraints",
+      "analysis_scope_note",
+      "grounding_summary",
+      "llm_analysis_limitations"
+    ],
+    "generation_mode": "template_based_grounded_demo",
+    "answer_sections_present": {
+      "Direct Answer:": true,
+      "Evidence Used:": true,
+      "Interpretation:": true,
+      "Limitation / Caution:": true
+    },
+    "answer_numeric_values_used": [],
+    "answer_entities_used": {
+      "classifiers": [],
+      "normalizations": []
+    },
+    "answer_warnings": []
+  },
+  {
+    "query_id": "Q10",
+    "query": "Can you summarize the result in a report-ready paragraph?",
+    "detected_query_type": "report_ready_summary",
+    "route_subtype": "report_ready_summary",
+    "answer": "Direct Answer:\nReport-ready summary: The dominant result is that classification error generally increases from split=50 to split=100, indicating reduced robustness under stronger batch-separated evaluation in this scenario.\n\nEvidence Used:\nFor scenario jama_scenario1_3, the top sensitive example is knn|vsn with delta_100_50=0.306, while the top stable example is svm|non with delta_100_50=0.033. The grounding status is pass_with_warnings.\n\nInterpretation:\nThe structured evidence suggests that knn|vsn is a high-sensitivity example and svm|non is a stability example for the classification error metric.\n\nLimitation / Caution:\nThe report-ready paragraph should be read as a summary of observed structured evidence only. Use only the detected pattern labels and numeric features. Do not infer biological mechanisms.",
+    "evidence_keys_used": [
+      "scenario",
+      "metric",
+      "split_values",
+      "scenario_overview",
+      "dominant_observation",
+      "most_sensitive_combinations",
+      "most_stable_combinations",
+      "classifier_level_evidence",
+      "normalization_level_evidence",
+      "grounding_summary",
+      "project_constraints",
+      "analysis_scope_note"
+    ],
+    "generation_mode": "template_based_grounded_demo",
+    "answer_sections_present": {
+      "Direct Answer:": true,
+      "Evidence Used:": true,
+      "Interpretation:": true,
+      "Limitation / Caution:": true
+    },
+    "answer_numeric_values_used": [
+      "50",
+      "100",
+      "00",
+      "0",
+      "0.306",
+      "00",
+      "0",
+      "0.033"
+    ],
+    "answer_entities_used": {
+      "classifiers": [
+        "knn",
+        "svm"
+      ],
+      "normalizations": [
+        "non",
+        "vsn"
+      ]
+    },
+    "answer_warnings": []
+  }
+]

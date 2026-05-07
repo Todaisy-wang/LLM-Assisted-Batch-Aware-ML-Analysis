@@ -1,0 +1,591 @@
+[
+  {
+    "query_id": "Q1",
+    "query": "What is the overall pattern observed across split values?",
+    "detected_query_type": "scenario_overview",
+    "route_subtype": "overall_pattern",
+    "answer": "Direct Answer:  \nThe overall pattern observed across split values indicates that most classifier-normalization curves show an increasing classification error as the split moves from 50 to 100. This suggests a reduced robustness under stronger batch-separated evaluation.\n\nEvidence Used:  \nThe evidence indicates that there are 22 instances of increasing trend labels and only 2 instances of flat or weak trends. Additionally, 16 classifiers were identified as batch sensitive, and the dominant observation highlights that the classification error increases as the split transitions from 50 to 100.\n\nInterpretation:  \nThe increasing classification error across the split values suggests that classifiers may perform less robustly when evaluated under conditions that separate batches more distinctly. The most frequent degradation type observed was fluctuating, which may further indicate instability in performance as the split value increases.\n\nLimitation / Caution:  \nThe findings are based solely on the observed patterns and do not imply any biological mechanisms or causality. The evidence does not provide a comprehensive understanding of all potential factors influencing classification error across different splits.",
+    "evidence_keys_used": [
+      "scenario",
+      "metric",
+      "split_values",
+      "scenario_overview",
+      "overall_pattern_counts",
+      "dominant_observation",
+      "analysis_scope_note",
+      "project_constraints"
+    ],
+    "generation_mode": "api_grounded_demo_optional",
+    "answer_sections_present": {
+      "Direct Answer:": true,
+      "Evidence Used:": true,
+      "Interpretation:": true,
+      "Limitation / Caution:": true
+    },
+    "answer_numeric_values_used": [
+      "50",
+      "100",
+      "22",
+      "2",
+      "16",
+      "50",
+      "100"
+    ],
+    "answer_entities_used": {
+      "classifiers": [],
+      "normalizations": []
+    },
+    "answer_warnings": [],
+    "api_generation_status": "success",
+    "missing_sections": [],
+    "api_error_message": ""
+  },
+  {
+    "query_id": "Q2",
+    "query": "Which classifier appears most batch-sensitive?",
+    "detected_query_type": "classifier_comparison",
+    "route_subtype": "batch_sensitive_classifier",
+    "answer": "Direct Answer:  \nThe classifier that appears most batch-sensitive is \"knn,\" particularly with the normalization \"vsn,\" which has a maximum delta_100_50 of 0.306 and a classification error of 0.4208 at split=100.\n\nEvidence Used:  \nFor the classifier \"knn,\" 3 out of 4 normalization settings are batch-sensitive. The most sensitive normalization is \"vsn,\" with a mean delta_100_50 of 0.2302. The maximum delta_100_50 is 0.3060, and the classification errors are 0.1148 at split=50 and 0.4208 at split=100. The dominant degradation type is late_spike_driven.\n\nInterpretation:  \nThe evidence indicates that \"knn\" is highly sensitive to batch effects, especially when using the \"vsn\" normalization. The significant increase in classification error from split=50 to split=100 suggests that this classifier's performance deteriorates under conditions of stronger batch separation.\n\nLimitation / Caution:  \nThe evidence is limited to the classifiers and normalizations provided, and no biological mechanisms or causality can be inferred from the results. Additionally, while \"knn\" shows the highest sensitivity, other classifiers also exhibit batch sensitivity, and the overall robustness may vary based on different conditions not covered in this evidence.",
+    "evidence_keys_used": [
+      "metric",
+      "split_values",
+      "classifier_level_evidence",
+      "most_sensitive_combinations",
+      "most_stable_combinations",
+      "overall_pattern_counts",
+      "dominant_observation"
+    ],
+    "generation_mode": "api_grounded_demo_optional",
+    "answer_sections_present": {
+      "Direct Answer:": true,
+      "Evidence Used:": true,
+      "Interpretation:": true,
+      "Limitation / Caution:": true
+    },
+    "answer_numeric_values_used": [
+      "00",
+      "0",
+      "0.306",
+      "0.4208",
+      "100",
+      "3",
+      "4",
+      "00",
+      "0",
+      "0.2302",
+      "00",
+      "0",
+      "0.3060",
+      "0.1148",
+      "50",
+      "0.4208",
+      "100",
+      "50",
+      "100"
+    ],
+    "answer_entities_used": {
+      "classifiers": [
+        "knn"
+      ],
+      "normalizations": [
+        "vsn"
+      ]
+    },
+    "answer_warnings": [],
+    "api_generation_status": "success",
+    "missing_sections": [],
+    "api_error_message": ""
+  },
+  {
+    "query_id": "Q3",
+    "query": "Which normalization method appears most stable across classifiers?",
+    "detected_query_type": "normalization_comparison",
+    "route_subtype": "stable_normalization",
+    "answer": "Direct Answer:  \nThe normalization method that appears most stable across classifiers is \"non\" when used with the \"svm\" classifier, which has a delta_100_50 of 0.0333 and a classification error of 0.1945 at split=100.\n\nEvidence Used:  \n- For the \"svm\" classifier with \"non\" normalization:  \n  - delta_100_50: 0.03332325167187561  \n  - mean_error_50: 0.161172161172161  \n  - mean_error_100: 0.1944954128440366  \n- Other normalization methods such as \"mn,\" \"qn,\" and \"vsn\" showed higher delta_100_50 values and greater classification errors.\n\nInterpretation:  \nThe \"non\" normalization method demonstrates the least change in classification error between split=50 and split=100, indicating a more stable performance across the tested classifiers. In contrast, other normalization methods exhibited greater variability in classification error, suggesting they are less stable.\n\nLimitation / Caution:  \nThe evidence does not provide a comprehensive assessment of all possible normalization methods or classifiers, and the stability observed is specific to the tested conditions. Additionally, the analysis does not account for potential biological mechanisms or causality.",
+    "evidence_keys_used": [
+      "metric",
+      "split_values",
+      "normalization_level_evidence",
+      "most_stable_combinations",
+      "most_sensitive_combinations",
+      "analysis_scope_note"
+    ],
+    "generation_mode": "api_grounded_demo_optional",
+    "answer_sections_present": {
+      "Direct Answer:": true,
+      "Evidence Used:": true,
+      "Interpretation:": true,
+      "Limitation / Caution:": true
+    },
+    "answer_numeric_values_used": [
+      "00",
+      "0",
+      "0.0333",
+      "0.1945",
+      "100",
+      "00",
+      "0",
+      "0.03332325167187561",
+      "0",
+      "0.161172161172161",
+      "00",
+      "0.1944954128440366",
+      "00",
+      "0",
+      "50",
+      "100"
+    ],
+    "answer_entities_used": {
+      "classifiers": [
+        "svm"
+      ],
+      "normalizations": [
+        "mn",
+        "non",
+        "qn",
+        "vsn"
+      ]
+    },
+    "answer_warnings": [],
+    "api_generation_status": "success",
+    "missing_sections": [],
+    "api_error_message": ""
+  },
+  {
+    "query_id": "Q4",
+    "query": "Which classifier-normalization combination appears most stable?",
+    "detected_query_type": "classifier_comparison",
+    "route_subtype": "stable_combination_comparison",
+    "answer": "Direct Answer:  \nThe most stable classifier-normalization combinations are:  \n1. SVM with non normalization  \n2. PAM with QN normalization  \n3. RF with non normalization  \n4. KNN with non normalization  \n5. XGB with non normalization  \n\nThese combinations exhibit moderate sensitivity and fluctuating degradation patterns.\n\nEvidence Used:  \n- SVM with non normalization: Error at split=50 is 0.161 and at split=100 is 0.194, with a delta_100_50 of 0.033.  \n- PAM with QN normalization: Error at split=50 is 0.181 and at split=100 is 0.232, with a delta_100_50 of 0.050.  \n- RF with non normalization: Error at split=50 is 0.134 and at split=100 is 0.193, with a delta_100_50 of 0.059.  \n- KNN with non normalization: Error at split=50 is 0.131 and at split=100 is 0.204, with a delta_100_50 of 0.074.  \n- XGB with non normalization: Error at split=50 is 0.113 and at split=100 is 0.191, with a delta_100_50 of 0.078.  \n\nInterpretation:  \nThese combinations show relatively low classification error at split=50 and split=100, indicating stability in performance across different splits. The delta_100_50 values suggest that while there is some increase in classification error from split=50 to split=100, the changes are moderate, reflecting a degree of robustness.\n\nLimitation / Caution:  \nThe evidence indicates moderate sensitivity and fluctuating degradation patterns, which suggests that while these combinations are stable, they are not immune to performance changes. The classification error increases at higher splits, and the robustness flags indicate that these classifiers may still be sensitive to variations in data.",
+    "evidence_keys_used": [
+      "metric",
+      "split_values",
+      "most_stable_combinations",
+      "most_sensitive_combinations",
+      "stable_combination_lookup_subset"
+    ],
+    "generation_mode": "api_grounded_demo_optional",
+    "answer_sections_present": {
+      "Direct Answer:": true,
+      "Evidence Used:": true,
+      "Interpretation:": true,
+      "Limitation / Caution:": true
+    },
+    "answer_numeric_values_used": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "50",
+      "0.161",
+      "100",
+      "0.194",
+      "00",
+      "0",
+      "0.033",
+      "50",
+      "0.181",
+      "100",
+      "0.232",
+      "00",
+      "0",
+      "0.050",
+      "50",
+      "0.134",
+      "100",
+      "0.193",
+      "00",
+      "0",
+      "0.059",
+      "50",
+      "0.131",
+      "100",
+      "0.204",
+      "00",
+      "0",
+      "0.074",
+      "50",
+      "0.113",
+      "100",
+      "0.191",
+      "00",
+      "0",
+      "0.078",
+      "50",
+      "100",
+      "00",
+      "0",
+      "50",
+      "100"
+    ],
+    "answer_entities_used": {
+      "classifiers": [
+        "knn",
+        "pam",
+        "rf",
+        "svm",
+        "xgb"
+      ],
+      "normalizations": [
+        "non",
+        "qn"
+      ]
+    },
+    "answer_warnings": [],
+    "api_generation_status": "success",
+    "missing_sections": [],
+    "api_error_message": ""
+  },
+  {
+    "query_id": "Q5",
+    "query": "How does split=100 differ from split=50 in this experiment?",
+    "detected_query_type": "split_interpretation",
+    "route_subtype": "split_50_vs_100",
+    "answer": "Direct Answer:  \nIn this experiment, split=100 differs from split=50 in that most classifier-normalization combinations exhibit increased classification error as the split value increases. Specifically, the transition from split=50 to split=100 shows a notable degradation in robustness, with many classifiers demonstrating higher error rates under the stronger batch-separated evaluation.\n\nEvidence Used:  \nThe evidence indicates that higher split values lead to stronger batch-separated evaluation, resulting in increased classification error. For instance, the knn classifier with vsn normalization shows an error of 0.1148 at split=50 and 0.4208 at split=100, resulting in a delta_100_50 of 0.3060. Other combinations, such as knn with mn and qn normalizations, also show significant increases in error from split=50 to split=100.\n\nInterpretation:  \nThe dominant observation is that most classifiers become less robust as the split value increases, with a clear trend of increasing classification error. The most sensitive combinations, particularly those involving the knn classifier, demonstrate strong patterns of degradation, while some classifiers, like svm and pam, show more moderate sensitivity to the split changes.\n\nLimitation / Caution:  \nThe evidence does not provide a comprehensive view of all possible classifiers and normalizations, and the results are limited to the specific combinations tested. Additionally, the findings should not be interpreted as causal relationships or biological mechanisms, as the evidence strictly adheres to the provided constraints.",
+    "evidence_keys_used": [
+      "metric",
+      "split_values",
+      "interpretation_note",
+      "dominant_observation",
+      "most_sensitive_combinations",
+      "most_stable_combinations",
+      "project_constraints"
+    ],
+    "generation_mode": "api_grounded_demo_optional",
+    "answer_sections_present": {
+      "Direct Answer:": true,
+      "Evidence Used:": true,
+      "Interpretation:": true,
+      "Limitation / Caution:": true
+    },
+    "answer_numeric_values_used": [
+      "100",
+      "50",
+      "50",
+      "100",
+      "0.1148",
+      "50",
+      "0.4208",
+      "100",
+      "00",
+      "0",
+      "0.3060",
+      "50",
+      "100"
+    ],
+    "answer_entities_used": {
+      "classifiers": [
+        "knn",
+        "pam",
+        "svm"
+      ],
+      "normalizations": [
+        "mn",
+        "qn",
+        "vsn"
+      ]
+    },
+    "answer_warnings": [],
+    "api_generation_status": "success",
+    "missing_sections": [],
+    "api_error_message": ""
+  },
+  {
+    "query_id": "Q6",
+    "query": "What does a large delta_100_50 indicate?",
+    "detected_query_type": "split_interpretation",
+    "route_subtype": "delta_interpretation",
+    "answer": "Direct Answer:  \nA large delta_100_50 indicates a significant difference in classification error between the evaluations at split=100 and split=50. This suggests that the model's performance is sensitive to the batch separation used in the evaluation.\n\nEvidence Used:  \nThe evidence shows that for the classifier \"knn\" with normalization \"vsn,\" the delta_100_50 is 0.306, with an error of 0.114 at split=50 and 0.420 at split=100. Other combinations, such as \"knn\" with normalization \"mn\" and \"qn,\" also exhibit high delta values, indicating batch sensitivity. In contrast, the \"svm\" classifier with normalization \"non\" has a low delta of 0.033, suggesting more stable performance across splits.\n\nInterpretation:  \nHigher delta_100_50 values, such as those seen with \"knn\" and \"vsn,\" indicate that the model's classification error increases significantly when moving from split=50 to split=100. This reflects a strong batch-sensitive behavior, where the model's robustness is affected by the way data is split for evaluation.\n\nLimitation / Caution:  \nThe evidence does not provide a comprehensive understanding of all possible classifiers or normalization methods, and the interpretation is limited to the specific combinations presented. Additionally, the results should not be generalized beyond the provided evidence, and no causal relationships can be inferred.",
+    "evidence_keys_used": [
+      "metric",
+      "split_values",
+      "interpretation_note",
+      "most_sensitive_combinations",
+      "most_stable_combinations",
+      "example_high_delta_combination",
+      "example_low_delta_combination",
+      "project_constraints"
+    ],
+    "generation_mode": "api_grounded_demo_optional",
+    "answer_sections_present": {
+      "Direct Answer:": true,
+      "Evidence Used:": true,
+      "Interpretation:": true,
+      "Limitation / Caution:": true
+    },
+    "answer_numeric_values_used": [
+      "00",
+      "0",
+      "100",
+      "50",
+      "00",
+      "0",
+      "0.306",
+      "0.114",
+      "50",
+      "0.420",
+      "100",
+      "0.033",
+      "00",
+      "0",
+      "50",
+      "100"
+    ],
+    "answer_entities_used": {
+      "classifiers": [
+        "knn",
+        "svm"
+      ],
+      "normalizations": [
+        "mn",
+        "non",
+        "qn",
+        "vsn"
+      ]
+    },
+    "answer_warnings": [],
+    "api_generation_status": "success",
+    "missing_sections": [],
+    "api_error_message": ""
+  },
+  {
+    "query_id": "Q7",
+    "query": "How should I interpret knn with vsn normalization?",
+    "detected_query_type": "specific_combination",
+    "route_subtype": "specific_combination",
+    "answer": "Direct Answer:  \nThe interpretation of k-nearest neighbors (knn) with variance stabilization normalization (vsn) indicates that there is an increasing classification error as the split value increases. Specifically, the classification error at split=50 is 0.115, while at split=100 it rises to 0.421, resulting in a delta_100_50 of 0.306.\n\nEvidence Used:  \nThe evidence shows that for knn with vsn normalization, the classification errors at various split values are as follows:  \n- Split=50: 0.114774  \n- Split=70: 0.130037  \n- Split=80: 0.137615  \n- Split=90: 0.179487  \n- Split=100: 0.420795  \nThe delta_100_50 is 0.306, indicating a significant increase in classification error from split=50 to split=100.\n\nInterpretation:  \nThe results suggest a strong trend of increasing classification error with higher split values, characterized by a monotonic curve with a spike in error at the late extreme split (from 90 to 100). This pattern indicates that the model's robustness is batch sensitive, and the degradation in performance is driven by late spike effects.\n\nLimitation / Caution:  \nIt is important to note that the evidence does not provide insights into biological mechanisms or causality. The findings are strictly based on the observed classification errors and their trends across the specified splits.",
+    "evidence_keys_used": [
+      "metric",
+      "split_values",
+      "expected_combination_key",
+      "combination_key_exists",
+      "combination_evidence",
+      "project_constraints"
+    ],
+    "generation_mode": "api_grounded_demo_optional",
+    "answer_sections_present": {
+      "Direct Answer:": true,
+      "Evidence Used:": true,
+      "Interpretation:": true,
+      "Limitation / Caution:": true
+    },
+    "answer_numeric_values_used": [
+      "50",
+      "0.115",
+      "100",
+      "0.421",
+      "00",
+      "0",
+      "0.306",
+      "50",
+      "0.114774",
+      "70",
+      "0.130037",
+      "80",
+      "0.137615",
+      "90",
+      "0.179487",
+      "100",
+      "0.420795",
+      "00",
+      "0",
+      "0.306",
+      "50",
+      "100",
+      "90",
+      "100"
+    ],
+    "answer_entities_used": {
+      "classifiers": [
+        "knn"
+      ],
+      "normalizations": [
+        "vsn"
+      ]
+    },
+    "answer_warnings": [],
+    "api_generation_status": "success",
+    "missing_sections": [],
+    "api_error_message": ""
+  },
+  {
+    "query_id": "Q8",
+    "query": "Are the LLM-generated interpretations consistent with the observed evidence?",
+    "detected_query_type": "grounding_reliability",
+    "route_subtype": "grounding_consistency",
+    "answer": "Direct Answer:  \nThe LLM-generated interpretations are consistent with the observed evidence, as indicated by a grounding status of \"pass_with_warnings.\" The analysis utilized only the provided Module 2 pattern evidence without introducing external datasets or inferring biological mechanisms.\n\nEvidence Used:  \nThe grounding summary shows a classifier coverage rate of 0.5 and a normalization coverage rate of 0.75. The top sensitive pairs covered include the \"knn\" classifier with \"vsn,\" \"mn,\" and \"qn\" normalizations, all with partial matches. The top stable pairs covered include the \"svm\" classifier with \"non,\" the \"pam\" classifier with \"qn,\" and the \"rf\" classifier with \"non,\" with the last having an exact match.\n\nInterpretation:  \nThe evidence indicates that the classifiers and normalizations used in the analysis have a high coverage rate, suggesting that the interpretations generated by the LLM align with the observed data. However, the grounding status of \"pass_with_warnings\" suggests that while the interpretations are generally consistent, there may be some areas that require caution.\n\nLimitation / Caution:  \nThe grounding status indicates that while the interpretations are consistent, they are not without warnings. Additionally, the analysis did not explore the effects of split=50 and split=100 or the delta_100_50, which may limit the understanding of classification error in different contexts.",
+    "evidence_keys_used": [
+      "grounding_summary",
+      "llm_analysis",
+      "project_constraints",
+      "analysis_scope_note"
+    ],
+    "generation_mode": "api_grounded_demo_optional",
+    "answer_sections_present": {
+      "Direct Answer:": true,
+      "Evidence Used:": true,
+      "Interpretation:": true,
+      "Limitation / Caution:": true
+    },
+    "answer_numeric_values_used": [
+      "2",
+      "0.5",
+      "0.75",
+      "50",
+      "100",
+      "00",
+      "0"
+    ],
+    "answer_entities_used": {
+      "classifiers": [
+        "knn",
+        "pam",
+        "rf",
+        "svm"
+      ],
+      "normalizations": [
+        "mn",
+        "non",
+        "qn",
+        "vsn"
+      ]
+    },
+    "answer_warnings": [],
+    "api_generation_status": "success",
+    "missing_sections": [],
+    "api_error_message": ""
+  },
+  {
+    "query_id": "Q9",
+    "query": "What are the main limitations of this analysis?",
+    "detected_query_type": "limitation_summary",
+    "route_subtype": "limitations",
+    "answer": "Direct Answer:  \nThe main limitations of this analysis include the restricted scope of classifiers and normalizations tested, which may not generalize to other contexts or datasets. The classifier coverage rate is 0.5, and the normalization coverage rate is 0.75. Additionally, the analysis does not account for potential biological variability or mechanisms underlying the observed patterns.\n\nEvidence Used:  \nThe evidence indicates that the analysis is limited to specific classifiers and normalizations, with a classifier coverage rate of 0.5 and a normalization coverage rate of 0.75. It also notes that no biological mechanisms were inferred and that the findings may not generalize beyond the tested conditions.\n\nInterpretation:  \nThe limitations suggest that the classification error may vary significantly if different classifiers or normalization methods are applied. The analysis does not provide insights into how the results might change with different splits, such as split=50 or split=100, or the delta_100_50, which could further affect the robustness of the findings.\n\nLimitation / Caution:  \nIt is important to note that the findings are based solely on the classifiers and normalizations tested, and the results may not be applicable to other datasets or contexts. The lack of consideration for biological variability further limits the applicability of the results.",
+    "evidence_keys_used": [
+      "project_constraints",
+      "analysis_scope_note",
+      "grounding_summary",
+      "llm_analysis_limitations"
+    ],
+    "generation_mode": "api_grounded_demo_optional",
+    "answer_sections_present": {
+      "Direct Answer:": true,
+      "Evidence Used:": true,
+      "Interpretation:": true,
+      "Limitation / Caution:": true
+    },
+    "answer_numeric_values_used": [
+      "0.5",
+      "0.75",
+      "0.5",
+      "0.75",
+      "50",
+      "100",
+      "00",
+      "0"
+    ],
+    "answer_entities_used": {
+      "classifiers": [],
+      "normalizations": []
+    },
+    "answer_warnings": [],
+    "api_generation_status": "success",
+    "missing_sections": [],
+    "api_error_message": ""
+  },
+  {
+    "query_id": "Q10",
+    "query": "Can you summarize the result in a report-ready paragraph?",
+    "detected_query_type": "report_ready_summary",
+    "route_subtype": "report_ready_summary",
+    "answer": "Direct Answer:  \nThe analysis of six classifiers across four normalization methods revealed that most classifier-normalization combinations exhibited an increasing classification error as the split moved from 50 to 100, indicating reduced robustness under stronger batch-separated evaluation. The most sensitive combinations included the k-nearest neighbors (knn) classifier with various normalizations, particularly the vsn normalization, which showed a delta_100_50 of 0.306 and classification errors of 0.115 at split=50 and 0.421 at split=100. In contrast, the most stable combinations, such as the support vector machine (svm) with non-normalization, demonstrated a much smaller delta_100_50 of 0.033 and classification errors of 0.161 at split=50 and 0.194 at split=100.\n\nEvidence Used:  \nThe evidence indicates that the dominant observation across the classifiers is an increasing classification error as the split moves from 50 to 100. The most sensitive combinations include knn with vsn (delta_100_50 = 0.306, error_50 = 0.115, error_100 = 0.421), knn with mn (delta_100_50 = 0.271, error_50 = 0.121, error_100 = 0.393), and knn with qn (delta_100_50 = 0.270, error_50 = 0.118, error_100 = 0.388). The most stable combinations include svm with non (delta_100_50 = 0.033, error_50 = 0.161, error_100 = 0.194).\n\nInterpretation:  \nThe results suggest that as the evaluation becomes more stringent (moving from split=50 to split=100), the classification error tends to increase, indicating a potential lack of robustness in the classifiers under batch-separated conditions. The knn classifier, particularly with the vsn normalization, is notably sensitive to these changes, while the svm classifier with non-normalization remains relatively stable.\n\nLimitation / Caution:  \nThe findings are based solely on the provided evidence and do not imply any biological mechanisms or causality. The analysis is",
+    "evidence_keys_used": [
+      "scenario",
+      "metric",
+      "split_values",
+      "scenario_overview",
+      "dominant_observation",
+      "most_sensitive_combinations",
+      "most_stable_combinations",
+      "classifier_level_evidence",
+      "normalization_level_evidence",
+      "grounding_summary",
+      "project_constraints",
+      "analysis_scope_note"
+    ],
+    "generation_mode": "api_grounded_demo_optional",
+    "answer_sections_present": {
+      "Direct Answer:": true,
+      "Evidence Used:": true,
+      "Interpretation:": true,
+      "Limitation / Caution:": true
+    },
+    "answer_numeric_values_used": [
+      "50",
+      "100",
+      "00",
+      "0",
+      "0.306",
+      "0.115",
+      "50",
+      "0.421",
+      "100",
+      "00",
+      "0",
+      "0.033",
+      "0.161",
+      "50",
+      "0.194",
+      "100",
+      "50",
+      "100",
+      "00",
+      "0",
+      "0.306",
+      "0",
+      "0.115",
+      "00",
+      "0.421",
+      "00",
+      "0",
+      "0.271",
+      "0",
+      "0.121",
+      "00",
+      "0.393",
+      "00",
+      "0",
+      "0.270",
+      "0",
+      "0.118",
+      "00",
+      "0.388",
+      "00",
+      "0",
+      "0.033",
+      "0",
+      "0.161",
+      "00",
+      "0.194",
+      "50",
+      "100"
+    ],
+    "answer_entities_used": {
+      "classifiers": [
+        "knn",
+        "svm"
+      ],
+      "normalizations": [
+        "mn",
+        "non",
+        "qn",
+        "vsn"
+      ]
+    },
+    "answer_warnings": [],
+    "api_generation_status": "success",
+    "missing_sections": [],
+    "api_error_message": ""
+  }
+]

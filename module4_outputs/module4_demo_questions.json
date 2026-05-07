@@ -1,0 +1,294 @@
+[
+  {
+    "query_id": "Q1",
+    "query": "What is the overall pattern observed across split values?",
+    "expected_query_type": "scenario_overview",
+    "required_evidence_fields": [
+      "scenario_overview",
+      "overall_pattern_counts",
+      "dominant_observation",
+      "split_values",
+      "metric"
+    ],
+    "expected_entities": {
+      "classifiers": [],
+      "normalizations": [],
+      "splits": [
+        50,
+        70,
+        80,
+        90,
+        100
+      ],
+      "metric": "classification error"
+    },
+    "answer_requirements": [
+      "mention classification error",
+      "mention split values",
+      "avoid causal claims",
+      "include limitation language later in generated answer"
+    ]
+  },
+  {
+    "query_id": "Q2",
+    "query": "Which classifier appears most batch-sensitive?",
+    "expected_query_type": "classifier_comparison",
+    "required_evidence_fields": [
+      "classifier_level_evidence",
+      "most_sensitive_combinations",
+      "overall_pattern_counts"
+    ],
+    "expected_entities": {
+      "classifiers": [
+        "knn",
+        "lasso",
+        "pam",
+        "rf",
+        "svm",
+        "xgb"
+      ],
+      "normalizations": [],
+      "splits": [
+        50,
+        100
+      ],
+      "metric": "classification error"
+    },
+    "answer_requirements": [
+      "identify the most sensitive classifier",
+      "cite classifier-level evidence",
+      "mention top sensitive combinations",
+      "avoid causal claims"
+    ]
+  },
+  {
+    "query_id": "Q3",
+    "query": "Which normalization method appears most stable across classifiers?",
+    "expected_query_type": "normalization_comparison",
+    "required_evidence_fields": [
+      "normalization_level_evidence",
+      "most_stable_combinations",
+      "most_sensitive_combinations"
+    ],
+    "expected_entities": {
+      "classifiers": [],
+      "normalizations": [
+        "mn",
+        "non",
+        "qn",
+        "vsn"
+      ],
+      "splits": [
+        50,
+        100
+      ],
+      "metric": "classification error"
+    },
+    "answer_requirements": [
+      "compare normalization methods",
+      "identify the most stable normalization evidence",
+      "mention classification error",
+      "avoid causal claims"
+    ]
+  },
+  {
+    "query_id": "Q4",
+    "query": "Which classifier-normalization combination appears most stable?",
+    "expected_query_type": "classifier_comparison",
+    "required_evidence_fields": [
+      "most_stable_combinations",
+      "combination_lookup"
+    ],
+    "expected_entities": {
+      "classifiers": [
+        "svm",
+        "pam",
+        "rf",
+        "knn",
+        "xgb"
+      ],
+      "normalizations": [
+        "non",
+        "qn"
+      ],
+      "splits": [
+        50,
+        100
+      ],
+      "metric": "classification error"
+    },
+    "answer_requirements": [
+      "identify the most stable combination",
+      "use delta_100_50",
+      "mention error at split 50 and split 100 when available",
+      "avoid causal claims"
+    ]
+  },
+  {
+    "query_id": "Q5",
+    "query": "How does split=100 differ from split=50 in this experiment?",
+    "expected_query_type": "split_interpretation",
+    "required_evidence_fields": [
+      "split_values",
+      "metric",
+      "interpretation_note",
+      "most_sensitive_combinations",
+      "most_stable_combinations"
+    ],
+    "expected_entities": {
+      "classifiers": [],
+      "normalizations": [],
+      "splits": [
+        50,
+        100
+      ],
+      "metric": "classification error"
+    },
+    "answer_requirements": [
+      "explain split 100 versus split 50",
+      "mention stronger batch-separated evaluation",
+      "use classification error",
+      "avoid causal claims"
+    ]
+  },
+  {
+    "query_id": "Q6",
+    "query": "What does a large delta_100_50 indicate?",
+    "expected_query_type": "split_interpretation",
+    "required_evidence_fields": [
+      "metric",
+      "interpretation_note",
+      "most_sensitive_combinations",
+      "combination_lookup"
+    ],
+    "expected_entities": {
+      "classifiers": [],
+      "normalizations": [],
+      "splits": [
+        50,
+        100
+      ],
+      "metric": "classification error"
+    },
+    "answer_requirements": [
+      "define delta_100_50",
+      "connect large delta to higher classification error at split 100",
+      "use examples from sensitive combinations",
+      "avoid causal claims"
+    ]
+  },
+  {
+    "query_id": "Q7",
+    "query": "How should I interpret knn with vsn normalization?",
+    "expected_query_type": "specific_combination",
+    "required_evidence_fields": [
+      "combination_lookup"
+    ],
+    "expected_entities": {
+      "classifiers": [
+        "knn"
+      ],
+      "normalizations": [
+        "vsn"
+      ],
+      "splits": [
+        50,
+        100
+      ],
+      "metric": "classification error"
+    },
+    "expected_combination_key": "knn|vsn",
+    "answer_requirements": [
+      "use knn|vsn lookup evidence",
+      "mention error curve or split 50 and split 100 errors",
+      "mention robustness flag and degradation type",
+      "avoid causal claims"
+    ]
+  },
+  {
+    "query_id": "Q8",
+    "query": "Are the LLM-generated interpretations consistent with the observed evidence?",
+    "expected_query_type": "grounding_reliability",
+    "required_evidence_fields": [
+      "grounding_summary",
+      "llm_analysis",
+      "project_constraints"
+    ],
+    "expected_entities": {
+      "classifiers": [],
+      "normalizations": [],
+      "splits": [],
+      "metric": "classification error"
+    },
+    "answer_requirements": [
+      "report grounding status",
+      "mention pass_with_warnings when applicable",
+      "describe consistency using grounding evidence",
+      "avoid overstating reliability"
+    ]
+  },
+  {
+    "query_id": "Q9",
+    "query": "What are the main limitations of this analysis?",
+    "expected_query_type": "limitation_summary",
+    "required_evidence_fields": [
+      "project_constraints",
+      "analysis_scope_note",
+      "grounding_summary",
+      "llm_analysis"
+    ],
+    "expected_entities": {
+      "classifiers": [],
+      "normalizations": [],
+      "splits": [],
+      "metric": "classification error"
+    },
+    "answer_requirements": [
+      "mention evidence scope",
+      "mention no biological mechanism inference",
+      "mention no causal claims",
+      "avoid adding external evidence"
+    ]
+  },
+  {
+    "query_id": "Q10",
+    "query": "Can you summarize the result in a report-ready paragraph?",
+    "expected_query_type": "report_ready_summary",
+    "required_evidence_fields": [
+      "scenario_overview",
+      "dominant_observation",
+      "most_sensitive_combinations",
+      "most_stable_combinations",
+      "classifier_level_evidence",
+      "normalization_level_evidence",
+      "project_constraints"
+    ],
+    "expected_entities": {
+      "classifiers": [
+        "knn",
+        "lasso",
+        "pam",
+        "rf",
+        "svm",
+        "xgb"
+      ],
+      "normalizations": [
+        "mn",
+        "non",
+        "qn",
+        "vsn"
+      ],
+      "splits": [
+        50,
+        100
+      ],
+      "metric": "classification error"
+    },
+    "answer_requirements": [
+      "write one report-ready paragraph",
+      "mention dominant pattern",
+      "include sensitive and stable examples",
+      "include limitations and constraints"
+    ]
+  }
+]
